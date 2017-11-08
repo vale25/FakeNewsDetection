@@ -15,16 +15,14 @@ numpy.random.seed(seed)
 
 t1 = datetime.now()
 with open("trainset_senza_duplicati.json") as f:
-    reviews = f.read().strip().split("\n")
+    articles = f.read().strip().split("\n")
 
-reviews = [json.loads(review) for review in reviews]
+articles = [json.loads(article) for article in articles]
 print(datetime.now() - t1)
 
-# Get a balanced sample of real and fake reviews
-texts = [review['text'] for review in reviews]
+texts = [article['text'] for article in articles]
 
-# Convert our 5 classes into 2 (negative or positive)
-binfake = [0 if review['label'] == "FAKE" else 1 for review in reviews]
+binfake = [0 if article['label'] == "FAKE" else 1 for article in articles]
 balanced_texts = []
 balanced_labels = []
 limit = 100000  # Change this to grow/shrink the dataset
@@ -61,6 +59,7 @@ for train, test in kfold.split(data, numpy.array(balanced_labels)):
     scores = model.evaluate(data[test],numpy.array(balanced_labels)[test], verbose=0)
     print("%s: %.2f%%" % (model.metrics_names[1], scores[1] * 100))
     cvscores.append(scores[1] * 100)
+# stampa la media e la deviazione standard
 print("%.2f%% (+/- %.2f%%)" % (numpy.mean(cvscores), numpy.std(cvscores)))
 
 # save the tokenizer and model
