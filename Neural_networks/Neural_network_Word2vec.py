@@ -1,7 +1,7 @@
 from collections import Counter
 from datetime import datetime
 import json
-from keras.layers import Embedding, LSTM, Dense, Conv1D, MaxPooling1D, Dropout, Activation
+from keras.layers import Embedding, LSTM, Dense, Conv1D, MaxPooling1D, Dropout
 from keras.models import Sequential
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
@@ -41,45 +41,20 @@ sequences = tokenizer.texts_to_sequences(balanced_texts)
 data = pad_sequences(sequences, maxlen=700)
 
 
-w2v_model = KeyedVectors.load_word2vec_format('/media/valentina/Data/pretrained_data/GoogleNews-vectors-negative300.bin', binary=True)
-
-limit = 1000
-vector_dim = 300
-words = []
-embedding = np.array([])
-i = 0
-for word in w2v_model.vocab:
-    # Break the loop if limit exceeds
-    if i == limit: break
-    # Getting token
-    words.append(word)
-    # Appending the vectors
-    embedding = np.append(embedding, w2v_model[word])
-    if i%100 == 0: print("100 fatti")
-    i += 1
-
-embedding_dimension = 50
-word_index = tokenizer.word_index
-
-embedding_matrix = np.zeros((len(word_index)+1, embedding_dimension))
-for word, i in word_index.items():
-    embedding_vector = embedding.take(word)
-    if embedding_vector is not None:
-        # words not found in embedding index will be all-zeros.
-        embedding_matrix[i] = embedding_vector[:embedding_dimension]
+w2v_model = KeyedVectors.load_word2vec_format('/media/valentina/Data/pretrained_data/GoogleNews-vectors-negative300.bin',
+                                              limit=500000, binary=True)
+# creo la matrice
+embedding_matrix = w2v_model.syn0
 
 print(embedding_matrix.shape)
 
-#embedding.reshape(limit, vector_dim)
-
-embedding_layer = Embedding(embedding_matrix.shape[0], embedding_matrix.shape[1], weights=[embedding_matrix],
-                            input_length=700)
+embedding_layer = Embedding(embedding_matrix.shape[0], embedding_matrix.shape[1],
+                            weights=[embedding_matrix], input_length=700)
 
 model = Sequential()
-#model.add(Embedding(20000, 128, input_length=700))
-
-# utilizzo il layer embedded di glove
+# utilizzo il layer creato con il file di word2vec
 model.add(embedding_layer)
+
 model.add(Dropout(0.2))
 model.add(Conv1D(64, 5, activation='relu'))
 model.add(MaxPooling1D(pool_size=4))
