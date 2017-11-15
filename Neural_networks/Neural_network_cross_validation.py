@@ -63,6 +63,6 @@ for train, test in kfold.split(data, numpy.array(balanced_labels)):
 print("%.2f%% (+/- %.2f%%)" % (numpy.mean(cvscores), numpy.std(cvscores)))
 
 # save the tokenizer and model
-with open("keras_tokenizer.pickle", "wb") as f:
-   pickle.dump(tokenizer, f)
-model.save("CrossValidation_model_giusto.hdf5")
+#with open("keras_tokenizer.pickle", "wb") as f:
+#   pickle.dump(tokenizer, f)
+#model.save("CrossValidation_model_giusto.hdf5")
