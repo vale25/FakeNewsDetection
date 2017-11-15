@@ -39,10 +39,10 @@ tokenizer.fit_on_texts(balanced_texts)
 sequences = tokenizer.texts_to_sequences(balanced_texts)
 data = pad_sequences(sequences, maxlen=700)
 
-# uso pretrained embeddings con i dati di glove
+# uso pretrained embeddings con i dati di glove (commenta fino a riga 69 per usare l'embedding di keras
 
 embeddings_index = {}
-glove_data = '/media/valentina/Data/pretrained_data/GoogleNews-vectors-negative300.bin'
+glove_data = '/media/valentina/Data/pretrained_data/glove.6B.50d.txt'
 f = open(glove_data)
 for line in f:
     values = line.split()
@@ -65,17 +65,17 @@ for word, i in word_index.items():
 
 print(embedding_matrix.shape)
 
-embedding_layer = Embedding(embedding_matrix.shape[0],
-                            embedding_matrix.shape[1],
-                            weights=[embedding_matrix],
-                            input_length=700)
+embedding_layer = Embedding(embedding_matrix.shape[0], embedding_matrix.shape[1],
+                            weights=[embedding_matrix], input_length=700)
 
 
 model = Sequential()
+# decommentare per utilizzare l'embedding di keras
 #model.add(Embedding(20000, 128, input_length=700))
 
-# utilizzo il layer embedded di glove
+# utilizzo il layer embedded di glove (commenta per usare l'embedding di keras)
 model.add(embedding_layer)
+
 model.add(Dropout(0.2))
 model.add(Conv1D(64, 5, activation='relu'))
 model.add(MaxPooling1D(pool_size=4))
