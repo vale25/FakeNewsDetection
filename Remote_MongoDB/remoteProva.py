@@ -4,13 +4,13 @@ client = pymongo.MongoClient("mongodb://luca04:pinguepinga1@ds111876.mlab.com:11
 
 db = client.politicsnewsdb
 
-result = db.politicsnewsdb.insert_one(
+result = db.politicsnews.insert_one(
     {
-        "_id": "1",
-        "text" : "Donald Trump is won the elections"
+        "_id": "3",
+        "text" : "Donald Trump won the elections"
     }
 )
 
 # print the number of documents in a collection
-print db.cool_collection.count()
+print db.politicsnews.count()
 
