@@ -11,7 +11,7 @@ import numpy as np
 import pickle
 
 t1 = datetime.now()
-with open("trainset_senza_duplicati.json") as f:
+with open("/home/valentina/Documenti/tesi/trainset_senza_duplicati.json") as f:
     articles = f.read().strip().split("\n")
 
 articles = [json.loads(article) for article in articles]
@@ -40,7 +40,7 @@ tokenizer.fit_on_texts(balanced_texts)
 sequences = tokenizer.texts_to_sequences(balanced_texts)
 data = pad_sequences(sequences, maxlen=700)
 
-
+# fino a limit=400k va abbastanza velocemente
 w2v_model = KeyedVectors.load_word2vec_format('/media/valentina/Data/pretrained_data/GoogleNews-vectors-negative300.bin',
                                               limit=500000, binary=True)
 # creo la matrice
