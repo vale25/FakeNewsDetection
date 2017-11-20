@@ -1,13 +1,16 @@
 import pymongo
 
-client = pymongo.MongoClient("mongodb://luca04:pinguepinga1@ds111876.mlab.com:11876/politicsnewsdb")
+user = ""
+password = ""
+
+client = pymongo.MongoClient("mongodb://%s:%s@ds111876.mlab.com:11876/politicsnewsdb" %(user,password))
 
 db = client.politicsnewsdb
 
 result = db.politicsnewsdb.insert_one(
     {
-        "_id": "1",
-        "text" : "Donald Trump is won the elections"
+        "_id": "4",
+        "text" : "you have a very fat ass"
     }
 )
 
