@@ -1,7 +1,7 @@
 import pymongo
 
-user = ""
-password = ""
+user = "luca04"
+password = "pinguepinga1"
 
 client = pymongo.MongoClient("mongodb://%s:%s@ds111876.mlab.com:11876/politicsnewsdb" %(user, password))
 
@@ -9,8 +9,10 @@ db = client.politicsnewsdb
 
 result = db.politicsnewsdb.insert_one(
     {
-        "_id": "4",
-        "text" : "Donald Trump won the elections"
+        "_id": "2",
+        "topic": "White House 'has plan to replace Tillerson'",
+        "text" : "",
+        "link" : "http://www.bbc.com/news/world-us-canada-42187070"
     }
 )
 
