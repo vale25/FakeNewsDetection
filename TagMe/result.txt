@@ -1,0 +1,2 @@
+media similarita' real news: 0.205873351209
+media similarita' fake news: 0.188276565431
