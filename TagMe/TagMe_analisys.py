@@ -1,8 +1,6 @@
 import urllib, json
 from difflib import SequenceMatcher
 
-#text = "Recent poll show President Obama opening up a small lead over GOP rival Mitt Romney"
-
 #Function that calculate the mean value of the most relevant word for the text
 def tag_me_mean_value(text):
     #url = "https://tagme.d4science.org/tagme/tag?lang=en&tweet=true&gcube-token=edc123ea-fe22-48c0-90d1-3f8b11c82116-843339462&text= Recent poll show President Obama opening up a small lead over GOP rival Mitt Romney"
@@ -92,6 +90,8 @@ for row in reader:
                 continue
 f.close()
 '''
+
+#Read each row of dataframe of real news and calculate mean value
 import pickle
 with open("real_news", "rb") as f:
     news = pickle.load(f)
@@ -111,6 +111,8 @@ print(mean_list)
 print(len(mean_list))
 
 mean_real_news = 0
+
+#mean function
 def mean(list):
     sum = 0
     for i in range(len(list)):
@@ -119,8 +121,10 @@ def mean(list):
 
 tot = mean(mean_list)
 
+#Calculate global mean value of real_news file
 mean_real_news = tot / len(mean_list)
 
+#Read each row of dataframe of fake news and calculate mean value
 with open("fake_news", "rb") as f:
     news = pickle.load(f)
 
@@ -135,13 +139,11 @@ for i in range(len(news)):
 
 mean_fake_news = 0
 tot2 = mean(mean_list2)
+
+#Calculate global mean value of fake_news file
 mean_fake_news = tot2/len(mean_list2)
-print("media similarita' real news: ")
-print(mean_real_news)
-print("media similarita' fake news: ")
-print(mean_fake_news)
 
-
+#Save output in a text file
 with open('result.txt', 'wb') as output:
     output.write("media similarita' real news: ")
     output.write(str(mean_real_news))
