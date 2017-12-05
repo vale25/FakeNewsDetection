@@ -16,22 +16,6 @@ def tag_me_mean_value(text):
             #print elem["spot"]
             list1.append(str(elem["spot"]))
 
-    '''
-    #import nltk
-    #nltk.download('wordnet')
-    from nltk.corpus import wordnet
-    print(list1)
-    list = []
-    cont = -1
-    appoggio = -1
-    for i in range(len(list1)):
-        for j in range(i+1,len(list1)):
-            wordFromList1 = wordnet.synsets(list1[i])
-            wordFromList2 = wordnet.synsets(list1[j])
-            if wordFromList1 and wordFromList2: #Thanks to @alexis' note
-                s = wordFromList1[0].wup_similarity(wordFromList2[0])
-                list.append(s)'''
-
     list = []
     s = SequenceMatcher(None)
 
@@ -67,29 +51,6 @@ def tag_me_mean_value(text):
 
 mean_list = []
 mean_list2 = []
-'''for i in range(2):
-    mean_list.append(tag_me_mean_value(text))
-
-print(mean_list)'''
-
-'''
-#Read each line of the csv file and create the list of mean_values
-import csv
-f = open('realnews_csv', 'rb')
-reader = csv.reader(f)
-cont = 1
-for row in reader:
-    if cont != 0:
-        cont = cont-1
-        print(row)
-        if row != []:
-            try:
-                mean_list.append(tag_me_mean_value(str(row)))
-            except ValueError:
-                # decoding failed
-                continue
-f.close()
-'''
 
 #Read each row of dataframe of real news and calculate mean value
 import pickle

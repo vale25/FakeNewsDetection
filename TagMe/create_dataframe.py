@@ -1,5 +1,3 @@
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.cluster import KMeans
 import pandas as pd
 
 
@@ -11,8 +9,8 @@ real = df.loc[df['label'] == "REAL"]
 fake = df.loc[df['label'] == "FAKE"]
 
 #cut real and fake dataframe to size 500
-real_text = real["text"][:500]
-fake_text = fake["text"][:500]
+real_text = real["text"][:100]
+fake_text = fake["text"][:100]
 
 #Save dataframes
 real_text.to_pickle("real_news")
