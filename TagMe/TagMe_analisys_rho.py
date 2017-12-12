@@ -1,7 +1,6 @@
 import urllib, json
 from difflib import SequenceMatcher
 from unidecode import unidecode
-from json import loads
 
 def remove_non_ascii(text):
     return unidecode(unicode(text, encoding = "utf-8"))
@@ -10,15 +9,15 @@ def remove_non_ascii(text):
 def tag_me_mean_value(text):
     #url = "https://tagme.d4science.org/tagme/tag?lang=en&tweet=true&gcube-token=edc123ea-fe22-48c0-90d1-3f8b11c82116-843339462&text= Recent poll show President Obama opening up a small lead over GOP rival Mitt Romney"
     #url = "https://tagme.d4science.org/tagme/tag?lang=en&include_abstract=true&include_categories=true&gcube-token=edc123ea-fe22-48c0-90d1-3f8b11c82116-843339462&text=Killing Obama administration rules, dismantling Obamacare and pushing through tax reform are on the early to-do list."
-    url = "https://tagme.d4science.org/tagme/spot?lang=en&gcube-token=edc123ea-fe22-48c0-90d1-3f8b11c82116-843339462&tweet=true&text="+text+""
+    #url = "https://tagme.d4science.org/tagme/spot?lang=en&gcube-token=edc123ea-fe22-48c0-90d1-3f8b11c82116-843339462&tweet=true&text="+text+""
+    url = "https://tagme.d4science.org/tagme/tag?lang=en&gcube-token=edc123ea-fe22-48c0-90d1-3f8b11c82116-843339462&tweet=true&text="+text+""
     response = urllib.urlopen(url)
     data = json.loads(response.read())
-
     #print data
-    a = data["spots"]
+    a = data["annotations"]
     list1 = []
     for elem in a:
-        if(elem["lp"] >= 0.4):
+        if(elem["rho"] >= 0.6):
             #print elem["spot"]
             list1.append(str(elem["spot"]))
 
@@ -35,12 +34,12 @@ def tag_me_mean_value(text):
             s.set_seq1(keyword)
             if interest != keyword:
                 b = s.ratio()>=limit and len(s.get_matching_blocks())==2
-               # print '%10s %-10s  %f  %s' % (interest, keyword,
-                #                              s.ratio(),
-                 #                             '** MATCH **' if b else '')
+                #print '%10s %-10s  %f  %s' % (interest, keyword,
+                 #                             s.ratio(),
+                  #                            '** MATCH **' if b else '')
                 list.append(s.ratio())
 
-        #print
+       # print
 
    # print(list)
     if list != []:
@@ -60,15 +59,13 @@ mean_list2 = []
 
 #Read each row of dataframe of real news and calculate mean value
 import pickle
-with open("real_news", "rb") as f:
+with open("/home/luca/PycharmProjects/FakeNewsDetection/TagMe/real_news", "rb") as f:
     news = pickle.load(f)
 
 for i in range(len(news)):
     #print(news.iloc[i])
     try:
-        text2 = news.iloc[i].encode('ascii', 'ignore')
-        mean_list.append(tag_me_mean_value(text2))
-        #mean_list.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
+        mean_list.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
     except ValueError:
         print(i)
         # decoding failed
@@ -94,15 +91,13 @@ tot = mean(mean_list)
 mean_real_news = tot / len(mean_list)
 
 #Read each row of dataframe of fake news and calculate mean value
-with open("fake_news", "rb") as f:
+with open("/home/luca/PycharmProjects/FakeNewsDetection/TagMe/fake_news", "rb") as f:
     news = pickle.load(f)
 
 for i in range(len(news)):
-   # print(news.iloc[i])
+    #print(news.iloc[i])
     try:
-        text3 = news.iloc[i].encode('ascii', 'ignore').decode('ascii')
-        mean_list.append(tag_me_mean_value(remove_non_ascii(str(text3))))
-        #mean_list2.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
+        mean_list2.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
     except ValueError:
         print(i)
         # decoding failed
@@ -115,7 +110,7 @@ tot2 = mean(mean_list2)
 mean_fake_news = tot2/len(mean_list2)
 
 #Save output in a text file
-with open('result.txt', 'wb') as output:
+with open('result_rho.txt', 'wb') as output:
     output.write("media similarita' real news: ")
     output.write(str(mean_real_news))
     output.write("\n")
