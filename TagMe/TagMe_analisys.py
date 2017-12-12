@@ -1,5 +1,9 @@
 import urllib, json
 from difflib import SequenceMatcher
+from unidecode import unidecode
+
+def remove_non_ascii(text):
+    return unidecode(unicode(text, encoding = "utf-8"))
 
 #Function that calculate the mean value of the most relevant word for the text
 def tag_me_mean_value(text):
@@ -29,21 +33,21 @@ def tag_me_mean_value(text):
             s.set_seq1(keyword)
             if interest != keyword:
                 b = s.ratio()>=limit and len(s.get_matching_blocks())==2
-                print '%10s %-10s  %f  %s' % (interest, keyword,
-                                              s.ratio(),
-                                              '** MATCH **' if b else '')
+               # print '%10s %-10s  %f  %s' % (interest, keyword,
+                #                              s.ratio(),
+                 #                             '** MATCH **' if b else '')
                 list.append(s.ratio())
 
-        print
+        #print
 
-    print(list)
+   # print(list)
     if list != []:
         tot = 0
         for i in range(len(list)) :
             tot = tot + list[i]
     if list != []:
         media = tot/len(list)
-        print(media)
+        #print(media)
         return media
     else:
         return 0
@@ -58,18 +62,20 @@ with open("real_news", "rb") as f:
     news = pickle.load(f)
 
 for i in range(len(news)):
-    print(news.iloc[i])
+    #print(news.iloc[i])
     print(i)
     try:
-        mean_list.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
+        text2 = news.iloc[i]
+        mean_list.append(tag_me_mean_value(remove_non_ascii(str(text2))))
+        #mean_list.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
     except ValueError:
         # decoding failed
         continue
 
 
 
-print(mean_list)
-print(len(mean_list))
+#print(mean_list)
+#print(len(mean_list))
 
 mean_real_news = 0
 
@@ -90,7 +96,7 @@ with open("fake_news", "rb") as f:
     news = pickle.load(f)
 
 for i in range(len(news)):
-    print(news.iloc[i])
+   # print(news.iloc[i])
     print(i)
     try:
         mean_list2.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
