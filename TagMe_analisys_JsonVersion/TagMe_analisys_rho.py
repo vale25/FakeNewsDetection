@@ -74,10 +74,6 @@ with open("/home/luca/PycharmProjects/TagMe_analisys_JsonVersion/real.json",'r')
             totale = totale+1
         cont = cont+1
 
-print("il totale delle sbagliate: %d" %totale)
-
-
-
 #print(mean_list)
 #print(len(mean_list))
 
@@ -111,7 +107,8 @@ with open("/home/luca/PycharmProjects/TagMe_analisys_JsonVersion/fake.json",'r')
             # decoding failed
         cont2 = cont2+1
 
-print("il totale delle sbagliate: %d" %totale2)
+print("Righe errate real news: %d" %totale)
+print("Righe errate fake news: %d" %totale2)
 
 
 mean_fake_news = 0

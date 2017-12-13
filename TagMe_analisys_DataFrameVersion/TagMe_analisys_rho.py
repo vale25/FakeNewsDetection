@@ -73,8 +73,6 @@ for i in range(len(news)):
         # decoding failed
         continue
 
-print("Totale righe errate %d" %totale)
-
 #print(mean_list)
 #print(len(mean_list))
 
@@ -106,7 +104,8 @@ for i in range(len(news)):
         totale2 = totale2+1
         # decoding failed
 
-print("Totale righe errate %d" %totale2)
+print("Totale righe errate real news %d" %totale)
+print("Totale righe errate fake news %d" %totale2)
 
 mean_fake_news = 0
 tot2 = mean(mean_list2)
