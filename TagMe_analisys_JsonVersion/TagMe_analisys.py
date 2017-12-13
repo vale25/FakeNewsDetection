@@ -1,6 +1,7 @@
 import urllib, json
 from difflib import SequenceMatcher
 from unidecode import unidecode
+import ast
 
 def remove_non_ascii(text):
     return unidecode(unicode(text, encoding = "utf-8"))
@@ -9,15 +10,15 @@ def remove_non_ascii(text):
 def tag_me_mean_value(text):
     #url = "https://tagme.d4science.org/tagme/tag?lang=en&tweet=true&gcube-token=edc123ea-fe22-48c0-90d1-3f8b11c82116-843339462&text= Recent poll show President Obama opening up a small lead over GOP rival Mitt Romney"
     #url = "https://tagme.d4science.org/tagme/tag?lang=en&include_abstract=true&include_categories=true&gcube-token=edc123ea-fe22-48c0-90d1-3f8b11c82116-843339462&text=Killing Obama administration rules, dismantling Obamacare and pushing through tax reform are on the early to-do list."
-    #url = "https://tagme.d4science.org/tagme/spot?lang=en&gcube-token=edc123ea-fe22-48c0-90d1-3f8b11c82116-843339462&tweet=true&text="+text+""
-    url = "https://tagme.d4science.org/tagme/tag?lang=en&gcube-token=edc123ea-fe22-48c0-90d1-3f8b11c82116-843339462&tweet=true&text="+text+""
+    url = "https://tagme.d4science.org/tagme/spot?lang=en&gcube-token=edc123ea-fe22-48c0-90d1-3f8b11c82116-843339462&tweet=true&text="+text+""
     response = urllib.urlopen(url)
     data = json.loads(response.read())
+
     #print data
-    a = data["annotations"]
+    a = data["spots"]
     list1 = []
     for elem in a:
-        if(elem["rho"] >= 0.6):
+        if(elem["lp"] >= 0.4):
             #print elem["spot"]
             list1.append(str(elem["spot"]))
 
@@ -34,12 +35,12 @@ def tag_me_mean_value(text):
             s.set_seq1(keyword)
             if interest != keyword:
                 b = s.ratio()>=limit and len(s.get_matching_blocks())==2
-                #print '%10s %-10s  %f  %s' % (interest, keyword,
-                 #                             s.ratio(),
-                  #                            '** MATCH **' if b else '')
+               # print '%10s %-10s  %f  %s' % (interest, keyword,
+                #                              s.ratio(),
+                 #                             '** MATCH **' if b else '')
                 list.append(s.ratio())
 
-       # print
+        #print
 
    # print(list)
     if list != []:
@@ -56,20 +57,24 @@ def tag_me_mean_value(text):
 
 mean_list = []
 mean_list2 = []
-
+cont = 0
+totale=0
 #Read each row of dataframe of real news and calculate mean value
-import pickle
-with open("/home/luca/PycharmProjects/FakeNewsDetection/TagMe/real_news", "rb") as f:
-    news = pickle.load(f)
+with open("/home/luca/PycharmProjects/TagMe_analisys_JsonVersion/real.json",'r') as dataset:
+    for line in dataset:
+        article = ast.literal_eval(line)
+        text = article['text']
+        try:
+            mean_list.append(tag_me_mean_value(remove_non_ascii(text)))
+            #print("giusto %d" %cont)
+            #mean_list.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
+        except ValueError:
+            print("sbagliato %d" %cont)
+            # decoding failed
+            totale = totale+1
+        cont = cont+1
 
-for i in range(len(news)):
-    #print(news.iloc[i])
-    try:
-        mean_list.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
-    except ValueError:
-        print(i)
-        # decoding failed
-        continue
+print("il totale delle sbagliate: %d" %totale)
 
 
 
@@ -90,18 +95,24 @@ tot = mean(mean_list)
 #Calculate global mean value of real_news file
 mean_real_news = tot / len(mean_list)
 
+cont2 = 0
+totale2 = 0
 #Read each row of dataframe of fake news and calculate mean value
-with open("/home/luca/PycharmProjects/FakeNewsDetection/TagMe/fake_news", "rb") as f:
-    news = pickle.load(f)
+with open("/home/luca/PycharmProjects/TagMe_analisys_JsonVersion/fake.json",'r') as dataset:
+    for line in dataset:
+        article = ast.literal_eval(line)
+        text = article['text']
+        try:
+            mean_list2.append(tag_me_mean_value(remove_non_ascii(text)))
+            #mean_list.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
+        except ValueError:
+            print(cont2)
+            totale2 = totale2+1
+            # decoding failed
+        cont2 = cont2+1
 
-for i in range(len(news)):
-    #print(news.iloc[i])
-    try:
-        mean_list2.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
-    except ValueError:
-        print(i)
-        # decoding failed
-        continue
+print("il totale delle sbagliate: %d" %totale2)
+
 
 mean_fake_news = 0
 tot2 = mean(mean_list2)
@@ -110,7 +121,7 @@ tot2 = mean(mean_list2)
 mean_fake_news = tot2/len(mean_list2)
 
 #Save output in a text file
-with open('result_rho.txt', 'wb') as output:
+with open('result_prova.txt', 'wb') as output:
     output.write("media similarita' real news: ")
     output.write(str(mean_real_news))
     output.write("\n")

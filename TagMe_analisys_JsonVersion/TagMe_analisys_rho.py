@@ -1,7 +1,7 @@
 import urllib, json
 from difflib import SequenceMatcher
 from unidecode import unidecode
-from json import loads
+import ast
 
 def remove_non_ascii(text):
     return unidecode(unicode(text, encoding = "utf-8"))
@@ -15,11 +15,11 @@ def tag_me_mean_value(text):
     data = json.loads(response.read())
 
     #print data
-    a = data["spots"]
+    a = data["annotations"]
     list1 = []
     for elem in a:
-        if(elem["lp"] >= 0.4):
-            #print elem["spot"]
+        if (elem["rho"] >= 0.6):
+            # print elem["spot"]
             list1.append(str(elem["spot"]))
 
     list = []
@@ -57,22 +57,24 @@ def tag_me_mean_value(text):
 
 mean_list = []
 mean_list2 = []
-
+cont = 0
+totale=0
 #Read each row of dataframe of real news and calculate mean value
-import pickle
-with open("real_news", "rb") as f:
-    news = pickle.load(f)
+with open("/home/luca/PycharmProjects/TagMe_analisys_JsonVersion/real.json",'r') as dataset:
+    for line in dataset:
+        article = ast.literal_eval(line)
+        text = article['text']
+        try:
+            mean_list.append(tag_me_mean_value(remove_non_ascii(text)))
+            #print("giusto %d" %cont)
+            #mean_list.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
+        except ValueError:
+            print("sbagliato %d" %cont)
+            # decoding failed
+            totale = totale+1
+        cont = cont+1
 
-for i in range(len(news)):
-    #print(news.iloc[i])
-    try:
-        text2 = news.iloc[i].encode('ascii', 'ignore')
-        mean_list.append(tag_me_mean_value(text2))
-        #mean_list.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
-    except ValueError:
-        print(i)
-        # decoding failed
-        continue
+print("il totale delle sbagliate: %d" %totale)
 
 
 
@@ -93,20 +95,24 @@ tot = mean(mean_list)
 #Calculate global mean value of real_news file
 mean_real_news = tot / len(mean_list)
 
+cont2 = 0
+totale2 = 0
 #Read each row of dataframe of fake news and calculate mean value
-with open("fake_news", "rb") as f:
-    news = pickle.load(f)
+with open("/home/luca/PycharmProjects/TagMe_analisys_JsonVersion/fake.json",'r') as dataset:
+    for line in dataset:
+        article = ast.literal_eval(line)
+        text = article['text']
+        try:
+            mean_list2.append(tag_me_mean_value(remove_non_ascii(text)))
+            #mean_list.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
+        except ValueError:
+            print(cont2)
+            totale2 = totale2+1
+            # decoding failed
+        cont2 = cont2+1
 
-for i in range(len(news)):
-   # print(news.iloc[i])
-    try:
-        text3 = news.iloc[i].encode('ascii', 'ignore').decode('ascii')
-        mean_list.append(tag_me_mean_value(remove_non_ascii(str(text3))))
-        #mean_list2.append(tag_me_mean_value(news.iloc[i].encode('ascii', 'ignore').decode('ascii')))
-    except ValueError:
-        print(i)
-        # decoding failed
-        continue
+print("il totale delle sbagliate: %d" %totale2)
+
 
 mean_fake_news = 0
 tot2 = mean(mean_list2)
@@ -115,7 +121,7 @@ tot2 = mean(mean_list2)
 mean_fake_news = tot2/len(mean_list2)
 
 #Save output in a text file
-with open('result.txt', 'wb') as output:
+with open('result_prova.txt', 'wb') as output:
     output.write("media similarita' real news: ")
     output.write(str(mean_real_news))
     output.write("\n")
