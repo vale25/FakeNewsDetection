@@ -52,7 +52,7 @@ S'auto'
 p16
 sS'n_iter_'
 p17
-I15
+I16
 sS'init'
 p18
 S'k-means++'

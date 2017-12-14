@@ -13,11 +13,11 @@ print("Prediction")
 mydata = pd.read_json(trainset_senza_duplicati, lines=True)
 df = pd.DataFrame(mydata)
 
-Y = vect.transform(["chrome browser to open."])
+Y = vect.transform(["October 31, 2016 at 4:52 am \nPretty factual except for women in the selective service. American military is still voluntary only and hasn't been a draft since Vietnam war. The comment was made by a 4 star general of the army about drafting women and he said it to shut up liberal yahoos."]) #fake
 prediction = km.predict(Y)
 print(prediction)
 
-Y = vect.transform(["My cat is hungry."])
+Y = vect.transform(["NEW YORK, N.Y. - If Hillary Clinton is winning the Democratic presidential race, why has it felt like she's losing? Yes, Mrs. Clinton scored an important victory in New York Tuesday, winning her adopted home state in the primary. But should the outcome ever have been in doubt? As a former senator from New York she"]) #real
 prediction = km.predict(Y)
 print(prediction)
 
