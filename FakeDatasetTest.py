@@ -3,6 +3,7 @@ from keras.models import load_model
 from keras.preprocessing.sequence import pad_sequences
 import pickle
 from unidecode import unidecode
+from Variables import *
 
 def remove_non_ascii(text):
     return unidecode(unicode(text, encoding = "utf-8"))
@@ -30,14 +31,10 @@ for i in range(len(text)):
         continue
 
 # load the tokenizer and the model
-myPickle = "/home/luca/PycharmProjects/FakeNewsDetection/Neural_networks/keras_tokenizer.pickle"
-myModel = "/home/luca/PycharmProjects/FakeNewsDetection/Neural_networks/FakeNewsDetection_model.hdf5"
-ValePickle = "/home/luca/PycharmProjects/Modello Rete Neurale nuovo/keras_tokenizer_new.pickle"
-ValeModel = "/home/luca/PycharmProjects/Modello Rete Neurale nuovo/newmodel.hdf5"
-with open(ValePickle, "rb") as f:
+with open(tokenizer2, "rb") as f:
     tokenizer = pickle.load(f)
 
-model = load_model(ValeModel)
+model = load_model(neural_model2)
 
 sequences = tokenizer.texts_to_sequences(text_news)
 data = pad_sequences(sequences, maxlen=1000)

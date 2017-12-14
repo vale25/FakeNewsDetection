@@ -1,5 +1,6 @@
 import cPickle as pickle
 import pandas as pd
+from Variables import *
 
 with open('Kmeans_vectorizer.pkl', 'rb') as f:
     vect = pickle.load(f)
@@ -9,7 +10,7 @@ with open('Kmeans_cluster.pkl', 'rb') as f:
 
 print("Prediction")
 
-mydata = pd.read_json("trainset_senza_duplicati.json", lines=True)
+mydata = pd.read_json(trainset_senza_duplicati, lines=True)
 df = pd.DataFrame(mydata)
 
 Y = vect.transform(["chrome browser to open."])

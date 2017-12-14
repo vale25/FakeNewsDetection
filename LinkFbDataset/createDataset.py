@@ -1,13 +1,14 @@
 import csv
 from boilerpipe.extract import Extractor
 from unidecode import unidecode
+from Variables import *
 
 def remove_non_ascii(text):
     return unidecode(unicode(text, encoding = "utf-8"))
 
 
-writer = csv.writer(open('/home/luca/Documenti/Tesi/Facebook_dataset.csv', 'w'))
-f = open ('/home/luca/Documenti/Tesi/facebook-fact-check-edited.csv', 'r')
+writer = csv.writer(open(fb_dataset, 'w'))
+f = open (fb_dataset_withoutText, 'r')
 reader = csv.reader(f)
 #Foreach news catch link and extract html content
 for row in reader:

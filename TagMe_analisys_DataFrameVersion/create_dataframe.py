@@ -1,8 +1,7 @@
 import pandas as pd
+from Variables import *
 
-Lucavar_trainset = "/home/luca/PycharmProjects/FakeNewsDetection/K-means_model/trainset_senza_duplicati.json"
-
-mydata = pd.read_json(Lucavar_trainset, lines=True)
+mydata = pd.read_json(trainset_senza_duplicati, lines=True)
 df = pd.DataFrame(mydata)
 
 #select real and fake news from dataframe

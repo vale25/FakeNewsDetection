@@ -6,6 +6,7 @@ from keras.models import Sequential
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import StratifiedKFold
+from Variables import *
 
 import numpy
 import pickle
@@ -14,7 +15,7 @@ seed = 7
 numpy.random.seed(seed)
 
 t1 = datetime.now()
-with open("trainset_senza_duplicati.json") as f:
+with open(trainset_senza_duplicati) as f:
     articles = f.read().strip().split("\n")
 
 articles = [json.loads(article) for article in articles]

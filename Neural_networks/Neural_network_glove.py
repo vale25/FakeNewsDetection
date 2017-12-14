@@ -5,12 +5,13 @@ from keras.layers import Embedding, LSTM, Dense, Conv1D, MaxPooling1D, Dropout, 
 from keras.models import Sequential
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
+from Variables import *
 
 import numpy as np
 import pickle
 
 t1 = datetime.now()
-with open("/home/valentina/Documenti/tesi/trainset_senza_duplicati.json") as f:
+with open(trainset_senza_duplicati) as f:
     articles = f.read().strip().split("\n")
 
 articles = [json.loads(article) for article in articles]

@@ -1,9 +1,9 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 import pandas as pd
-from sklearn.externals import joblib
+from Variables import *
 
-mydata = pd.read_json("trainset_senza_duplicati.json", lines=True)
+mydata = pd.read_json(trainset_senza_duplicati, lines=True)
 df = pd.DataFrame(mydata)
 
 vectorizer = TfidfVectorizer(stop_words='english')

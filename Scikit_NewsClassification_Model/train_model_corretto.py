@@ -1,10 +1,11 @@
 import json
 from collections import Counter
 from datetime import datetime
+from Variables import *
 
 # read the data from disk and split into lines
 # we use .strip() to remove the final (empty) line
-with open("trainset_senza_duplicati.json") as f:
+with open(trainset_senza_duplicati) as f:
     news = f.read().strip().split("\n")
 
 # each line of the file is a separate JSON object

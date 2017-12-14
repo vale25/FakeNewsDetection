@@ -1,6 +1,7 @@
 import urllib, json
 from difflib import SequenceMatcher
 from unidecode import unidecode
+from Variables import *
 
 def remove_non_ascii(text):
     return unidecode(unicode(text, encoding = "utf-8"))
@@ -59,7 +60,7 @@ mean_list2 = []
 
 #Read each row of dataframe of real news and calculate mean value
 import pickle
-with open("/home/luca/PycharmProjects/FakeNewsDetection/TagMe_analisys_DataFrameVersion/real_news", "rb") as f:
+with open(real_news, "rb") as f:
     news = pickle.load(f)
 
 totale = 0
@@ -91,7 +92,7 @@ tot = mean(mean_list)
 mean_real_news = tot / len(mean_list)
 
 #Read each row of dataframe of fake news and calculate mean value
-with open("/home/luca/PycharmProjects/FakeNewsDetection/TagMe_analisys_DataFrameVersion/fake_news", "rb") as f:
+with open(fake_news, "rb") as f:
     news = pickle.load(f)
 
 totale2 = 0

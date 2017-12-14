@@ -1,9 +1,10 @@
 import pandas as pd
+from Variables import *
 
 #mydata = pd.read_csv("fake_or_real_news.csv", header=0)
 #original_headers = list(mydata.columns.values[0])
 #numpy_array = mydata.as_matrix()
-mydata = pd.read_json("trainset_senza_duplicati.json", lines=True)
+mydata = pd.read_json(trainset_senza_duplicati, lines=True)
 df = mydata.loc[:, 'text'].tolist()
 
 array_label = []

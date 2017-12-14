@@ -2,6 +2,7 @@ import urllib, json
 from difflib import SequenceMatcher
 from unidecode import unidecode
 import ast
+from Variables import *
 
 def remove_non_ascii(text):
     return unidecode(unicode(text, encoding = "utf-8"))
@@ -60,7 +61,7 @@ mean_list2 = []
 cont = 0
 totale=0
 #Read each row of dataframe of real news and calculate mean value
-with open("/home/luca/PycharmProjects/TagMe_analisys_JsonVersion/real.json",'r') as dataset:
+with open(real_news_json,'r') as dataset:
     for line in dataset:
         article = ast.literal_eval(line)
         text = article['text']
@@ -94,7 +95,7 @@ mean_real_news = tot / len(mean_list)
 cont2 = 0
 totale2 = 0
 #Read each row of dataframe of fake news and calculate mean value
-with open("/home/luca/PycharmProjects/TagMe_analisys_JsonVersion/fake.json",'r') as dataset:
+with open(fake_news_json,'r') as dataset:
     for line in dataset:
         article = ast.literal_eval(line)
         text = article['text']

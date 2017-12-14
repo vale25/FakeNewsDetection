@@ -24,6 +24,7 @@ from sklearn.neighbors import NearestCentroid
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.utils.extmath import density
 from sklearn import metrics
+from Variables import *
 
 
 # Display progress logs on stdout
@@ -84,7 +85,7 @@ if opts.filtered:
 else:
     remove = ()
 
-mydata = pd.read_json("trainset_senza_duplicati.json", lines=True)
+mydata = pd.read_json(trainset_senza_duplicati, lines=True)
 
 print('data loaded')
 

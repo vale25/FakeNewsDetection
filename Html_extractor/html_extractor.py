@@ -3,20 +3,20 @@ from keras.preprocessing.sequence import pad_sequences
 import pickle
 from boilerpipe.extract import Extractor
 import pymongo
-from httplib import BadStatusLine
-
+from Variables import *
 
 # load the tokenizer and the model
-with open("/home/luca/PycharmProjects/FakeNewsDetection/Neural_networks/keras_tokenizer.pickle", "rb") as f:
+with open(tokenizer, "rb") as f:
     tokenizer = pickle.load(f)
 
-model = load_model("/home/luca/PycharmProjects/FakeNewsDetection/Neural_networks/FakeNewsDetection_model.hdf5")
+model = load_model(neural_model)
 news_link = []
 user = "luca04"
 password = "pinguepinga1"
 
 client = pymongo.MongoClient("mongodb://%s:%s@ds111876.mlab.com:11876/politicsnewsdb" %(user, password))
 
+#Prendi i link da ogni documento di mongodb
 db = client.politicsnewsdb
 result = db.politicsnewsdb.find()
 for document in result:
