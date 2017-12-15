@@ -29,17 +29,18 @@ def tag_me_mean_value(text):
     limit = 0.50
 
     for i in range(len(list1)):
-        interest = list1[i]
-        s.set_seq2(interest)
-        for j in range(i+1,len(list1)):
-            keyword = list1[j]
-            s.set_seq1(keyword)
-            if interest != keyword:
-                b = s.ratio()>=limit and len(s.get_matching_blocks())==2
-               # print '%10s %-10s  %f  %s' % (interest, keyword,
-                #                              s.ratio(),
-                 #                             '** MATCH **' if b else '')
-                list.append(s.ratio())
+        if list1 != [] and list1 != None and len(list1) != 1:
+            interest = list1[i]
+            s.set_seq2(interest)
+            for j in range(i+1,len(list1)):
+                keyword = list1[j]
+                s.set_seq1(keyword)
+                if interest != keyword:
+                    b = s.ratio()>=limit and len(s.get_matching_blocks())==2
+                   # print '%10s %-10s  %f  %s' % (interest, keyword,
+                    #                              s.ratio(),
+                     #                             '** MATCH **' if b else '')
+                    list.append(s.ratio())
 
         #print
 
@@ -119,7 +120,7 @@ tot2 = mean(mean_list2)
 mean_fake_news = tot2/len(mean_list2)
 
 #Save output in a text file
-with open('result_prova.txt', 'wb') as output:
+with open('result_analisys_lp.txt', 'wb') as output:
     output.write("media similarita' real news: ")
     output.write(str(mean_real_news))
     output.write("\n")

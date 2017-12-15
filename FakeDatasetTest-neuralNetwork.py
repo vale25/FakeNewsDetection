@@ -8,9 +8,7 @@ from Variables import *
 def remove_non_ascii(text):
     return unidecode(unicode(text, encoding = "utf-8"))
 
-myVar = "/home/luca/PycharmProjects/fake.csv"
-
-mydata = pd.read_csv(myVar)
+mydata = pd.read_csv(fakeNews_dataset)
 df = pd.DataFrame(mydata)
 
 #cut real and fake dataframe to size 500

@@ -11,7 +11,7 @@ def remove_non_ascii(text):
 mydata = pd.read_csv(fb_dataset)
 df = pd.DataFrame(mydata)
 
-#cut real and fake dataframe to size 500
+#Select texts and labels from dataset
 text = df["text"]
 labels = df["label"]
 arraylabel= []

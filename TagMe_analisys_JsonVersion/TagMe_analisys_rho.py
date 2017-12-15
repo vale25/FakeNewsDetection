@@ -120,7 +120,7 @@ tot2 = mean(mean_list2)
 mean_fake_news = tot2/len(mean_list2)
 
 #Save output in a text file
-with open('result_rho.txt', 'wb') as output:
+with open('result_analisys_rho.txt', 'wb') as output:
     output.write("media similarita' real news: ")
     output.write(str(mean_real_news))
     output.write("\n")
