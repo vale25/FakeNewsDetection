@@ -40,7 +40,7 @@ dueUrlTwitterSecondoBuono = collection.find({"Tweet.urlEntities": {"$exists": Tr
 urlEntitiesInRetweet = collection.find({"Tweet.urlEntities": {"$size": 0}, "url_text": "", "Tweet.retweetedStatus": {"$exists":True}, "Tweet.retweetedStatus.urlEntities": {"$exists": True, "$size": 1}, "Tweet.retweetedStatus.urlEntities.expandedURL": {"$not": re.compile("https://twitter.com")}})
 
 
-'''client = MongoClient()
+client = MongoClient()
 db = client.News
 
 #49
@@ -131,11 +131,7 @@ for elem in urlTwitterSenzaDuplicati:
     except BadStatusLine:
         print ("could not fetch %s" % elem[0])
     print(contatore)
-    contatore+=1'''
-
-client = MongoClient()
-db = client.NewsTogliDuplicati
-
+    contatore+=1
 
 
 #tot doc = 85656
