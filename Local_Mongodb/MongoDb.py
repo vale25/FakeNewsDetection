@@ -6,6 +6,7 @@ from urllib2 import HTTPError
 from socket import timeout
 from httplib import BadStatusLine
 import logging
+import ssl
 
 def extraction(link):
     extractor = Extractor(extractor='ArticleExtractor', url=link)
@@ -124,14 +125,19 @@ for elem in urlTwitterSenzaDuplicati:
                     "text": text
                 }
             )
-    except (HTTPError, URLError) as error:
+    except:
+        print("Exception in link %s", elem[0])
+    '''except (HTTPError, URLError) as error:
         logging.error('Data is not retrieved because %s\nURL: %s', error, elem[0])
     except timeout:
         logging.error('socket timed out - URL %s', elem[0])
     except BadStatusLine:
         print ("could not fetch %s" % elem[0])
+    except ssl.SSLError as err:
+        print('SSL connection failed: %s', str(err))'''
     print(contatore)
     contatore+=1
+
 
 
 #tot doc = 85656
