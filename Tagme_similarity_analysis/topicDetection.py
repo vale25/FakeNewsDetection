@@ -12,6 +12,7 @@ from unidecode import unidecode
 import numpy, time
 from itertools import islice
 from Variables import tagme_token, real_news_json, fake_news_json
+from requests.exceptions import Timeout, ConnectionError
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -24,9 +25,12 @@ values_real, values_fake = {}, {}
 
 
 def retrieveTopics(text, topics):
-    annotations = tagme.annotate(text)
-    for ann in annotations.get_annotations(0.3):
-        topics.setdefault(ann.entity_title, []).append(ann.score)
+    try:
+        annotations = tagme.annotate(text)
+        for ann in annotations.get_annotations(0.3):
+            topics.setdefault(ann.entity_title, []).append(ann.score)
+    except (Timeout, ConnectionError) as exc:
+        print "errore di connessione"
 
 
 def computeValue(topics, values):
@@ -36,10 +40,10 @@ def computeValue(topics, values):
         mean = numpy.mean(scores)*len(scores)
         values[k] = mean
 
-i=1
+'''i=1
 with open(real_news_json, "r") as real:
 
-    #n = 20
+    #n = 10
     #head = list(islice(real, n))
     #for line in head:
 
@@ -63,14 +67,16 @@ with open("top100_real", "w") as top:
         top.write(str(elem[0])+" "+str(elem[1])+"\n")
 top.close
 
+print "primo file scritto" '''
+
 j=1
 with open(fake_news_json, "r") as fake:
     for line in fake:
         article = ast.literal_eval(line)
         text = article['text']
         retrieveTopics(text, topics_fake)
-    print j
-    j+=1
+        print j
+        j+=1
 fake.close
 
 computeValue(topics_fake, values_fake)
@@ -82,7 +88,9 @@ print "scrivo su file..."
 with open("top100_fake", "w") as top2:
 
     for elem in top100_fake:
-        top.write(str(elem[0])+" "+str(elem[1])+"\n")
+        top2.write(str(elem[0])+" "+str(elem[1])+"\n")
 top2.close
+
+print "secondo file scritto"
 
 
