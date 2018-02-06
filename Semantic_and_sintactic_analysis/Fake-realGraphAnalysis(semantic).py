@@ -71,9 +71,7 @@ def semanticSim(docs,text):
 
 
 dict1 = semanticSim(docs,fake)
-print(dict1)
 list1 = ListFromDict(dict1)
-print(list1)
 dict2 = semanticSim(docs,fake2)
 list2 = ListFromDict(dict2)
 dict3 = semanticSim(docs,fake3)
@@ -124,40 +122,40 @@ print(fake + "\n")
 FindMinMaxSimText(dict1)
 
 print("News2 inserita:\n")
-print(fake + "\n")
-FindMinMaxSimText(dict1)
+print(fake2 + "\n")
+FindMinMaxSimText(dict2)
 
 print("News3 inserita:\n")
-print(fake + "\n")
-FindMinMaxSimText(dict1)
+print(fake3 + "\n")
+FindMinMaxSimText(dict3)
 
 print("News4 inserita:\n")
-print(fake + "\n")
-FindMinMaxSimText(dict1)
+print(fake4 + "\n")
+FindMinMaxSimText(dict4)
 
 print("News5 inserita:\n")
-print(fake + "\n")
-FindMinMaxSimText(dict1)
+print(fake5 + "\n")
+FindMinMaxSimText(dict5)
 
 print("News6 inserita:\n")
-print(fake + "\n")
-FindMinMaxSimText(dict1)
+print(fake6 + "\n")
+FindMinMaxSimText(dict6)
 
 print("News7 inserita:\n")
-print(fake + "\n")
-FindMinMaxSimText(dict1)
+print(fake7 + "\n")
+FindMinMaxSimText(dict7)
 
 print("News8 inserita:\n")
-print(fake + "\n")
-FindMinMaxSimText(dict1)
+print(fake8 + "\n")
+FindMinMaxSimText(dict8)
 
 print("News9 inserita:\n")
-print(fake + "\n")
-FindMinMaxSimText(dict1)
+print(fake9 + "\n")
+FindMinMaxSimText(dict9)
 
 print("News10 inserita:\n")
-print(fake + "\n")
-FindMinMaxSimText(dict1)
+print(fake10 + "\n")
+FindMinMaxSimText(dict10)
 
 #Crea il grafo delle News
 GraphCreator.createGraph(list1, list2, list3, list4, list5, list6, list7, list8, list9, list10, len(list1), 4)
