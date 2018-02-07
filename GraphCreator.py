@@ -28,19 +28,19 @@ def createGraph(lista,lista2,lista3,lista4,lista5,lista6,lista7,lista8,lista9,li
     if value == 0:
         xlabel("News")
         ylabel("Cosine Similarity")
-        title("Syntactic similarity of fake news with the FakeNews dataset")
+        title("Syntactic similarity of fake news titles with the FakeNews dataset")
     if value == 1:
         xlabel("News")
         ylabel("Cosine Similarity")
-        title("Syntactic similarity of real news with the RealNews dataset")
+        title("Syntactic similarity of real news titles with the RealNews dataset")
     if value == 2:
         xlabel("News")
         ylabel("Cosine Similarity")
-        title("Syntactic similarity of fake news with the RealNews dataset")
+        title("Syntactic similarity of fake news titles with the RealNews dataset")
     if value == 3:
         xlabel("News")
         ylabel("Cosine Similarity")
-        title("Syntactic similarity of real news with the FakeNews dataset")
+        title("Syntactic similarity of real news titles with the FakeNews dataset")
     if value == 4:
         xlabel("News")
         ylabel("Semantic Similarity")
