@@ -63,7 +63,7 @@ real9 = "Police Arrest Suspect In Charleston Church Shooting".replace('\n', '')
 real10 = "Donald Trump?s collapse was caused by one big factor: Hillary Clinton".replace('\n', '')
 
 
-vector1 = text_to_vector(real)
+'''vector1 = text_to_vector(real)
 vector2 = text_to_vector(real2)
 vector3 = text_to_vector(real3)
 vector4 = text_to_vector(real4)
@@ -72,9 +72,9 @@ vector6 = text_to_vector(real6)
 vector7 = text_to_vector(real7)
 vector8 = text_to_vector(real8)
 vector9 = text_to_vector(real9)
-vector10 = text_to_vector(real10)
+vector10 = text_to_vector(real10)'''
 
-'''vector1 = text_to_vector(fake)
+vector1 = text_to_vector(fake)
 vector2 = text_to_vector(fake2)
 vector3 = text_to_vector(fake3)
 vector4 = text_to_vector(fake4)
@@ -83,7 +83,7 @@ vector6 = text_to_vector(fake6)
 vector7 = text_to_vector(fake7)
 vector8 = text_to_vector(fake8)
 vector9 = text_to_vector(fake9)
-vector10 = text_to_vector(fake10)'''
+vector10 = text_to_vector(fake10)
 
 def cosineSim(vector1):
     with open(Fake_dataset_GraphAnalysis,'r') as dataset:
@@ -238,4 +238,4 @@ def realPrint():
 realPrint()
 
 #Crea il grafo delle News
-GraphCreator.createGraph(list1, list2, list3, list4, list5, list6, list7, list8, list9, list10, len(list1), 3)
+GraphCreator.createGraph(list1, list2, list3, list4, list5, list6, list7, list8, list9, list10, len(list1), 0)
