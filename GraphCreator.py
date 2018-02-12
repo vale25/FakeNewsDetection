@@ -13,7 +13,7 @@ def createGraph(lista,lista2,lista3,lista4,lista5,lista6,lista7,lista8,lista9,li
     s8 = lista8
     s9 = lista9
     s10 = lista10
-    axis([0.0, 3100.0, 0.0, 1.1])
+    axis([0.0, 3100.0, 0.0, 10.1])
     plot(t, s, label='news1')
     plot(t, s2, label='news2')
     plot(t, s3, label='news3')
@@ -58,7 +58,39 @@ def createGraph(lista,lista2,lista3,lista4,lista5,lista6,lista7,lista8,lista9,li
         xlabel("News")
         ylabel("Semantic Similarity")
         title("Semantic similarity of real news with the FakeNews dataset")
+    if value == 8:
+        xlabel("News")
+        ylabel("Semantic Similarity")
+        title("Semantic similarity of fake news titles with the FakeNews dataset")
+    if value == 9:
+        xlabel("News")
+        ylabel("Semantic Similarity")
+        title("Semantic similarity of real news titles with the RealNews dataset")
+    if value == 10:
+        xlabel("News")
+        ylabel("Semantic Similarity")
+        title("Semantic similarity of fake news titles with the RealNews dataset")
+    if value == 11:
+        xlabel("News")
+        ylabel("Semantic Similarity")
+        title("Semantic similarity of real news titles with the FakeNews dataset")
 
+    if value == 12:
+        xlabel("News")
+        ylabel("3-grams")
+        title("3-grams analysis of fake news with the FakeNews dataset")
+    if value == 13:
+        xlabel("News")
+        ylabel("3-grams")
+        title("3-grams analysis of real news with the RealNews dataset")
+    if value == 14:
+        xlabel("News")
+        ylabel("3-grams")
+        title("3-grams analysis of fake news with the RealNews dataset")
+    if value == 15:
+        xlabel("News")
+        ylabel("3-grams")
+        title("3-grams analysis of real news with the FakeNews dataset")
 
     grid(True)
     show()

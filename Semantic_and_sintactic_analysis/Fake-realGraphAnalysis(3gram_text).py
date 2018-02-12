@@ -1,45 +1,68 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
-import ast
-import math
-import re
-from collections import Counter
-
-import GraphCreator
+import os, sys
+from nltk.util import ngrams
 from Variables import *
+import ast
+from nltk.stem import PorterStemmer
+import nltk
+from nltk.corpus import stopwords
+import re
+from itertools import chain
+from nltk.corpus import wordnet
+import GraphCreator
 
-#Questa classe calcola in maniera efficiente (circa 4 secondi)
-# la realnews corrispondente ad una notizia fake inserita
-
-conta = 0
-contatore = 0
-cosineSimDict = {}
-WORD = re.compile(r'\w+')
-
-def get_cosine(vec1, vec2):
-     intersection = set(vec1.keys()) & set(vec2.keys())
-     numerator = sum([vec1[x] * vec2[x] for x in intersection])
-
-     sum1 = sum([vec1[x]**2 for x in vec1.keys()])
-     sum2 = sum([vec2[x]**2 for x in vec2.keys()])
-     denominator = math.sqrt(sum1) * math.sqrt(sum2)
-
-     if not denominator:
-        return 0.0
-     else:
-        return float(numerator) / denominator
-
-
-def text_to_vector(text):
-     words = WORD.findall(text)
-     return Counter(words)
 
 def ListFromDict(dict) :
     list = []
     for key, value in dict:
-        list.append(value)
+        list.append(value[0])
     return list
 
+
+#Funzione che oltre a verificare che i trigrammi sono comuni trova anche le parole sinonime e verifica che ci sia uguaglianza
+def compare(trigrams1, trigrams2):
+   common=[]
+   comuni=0
+   for grams1 in trigrams1:
+        if grams1 in trigrams2:
+            common.append(grams1)
+            comuni+=1
+   return comuni,common
+  # return comuni
+
+def compareWithSynonyms(trigrams1,trigrams2):
+    cont = 0
+    comuni = 0
+    commons = 0
+    list_comuni = []
+    for elem in trigrams1:
+        #print(elem[2])
+        for elem2 in trigrams2:
+            #print(elem2[0])
+            for i in range(3):
+                if(elem[i] != elem2[i]):
+                    synonyms = wordnet.synsets(elem2[i])
+                    lemmas = set(chain.from_iterable([word.lemma_names() for word in synonyms]))
+                    #print(lemmas)
+                    for element in lemmas:
+                        if(elem[i] == element):
+                            comuni+=1
+                else:
+                    comuni+=1
+                cont + 1
+            #print comuni
+            if comuni == 3:
+                commons+=1
+                a = [(elem2[0],elem2[1],elem2[2])]
+                list_comuni.append(a)
+                comuni = 0
+            else:
+                comuni = 0
+
+    return commons,list_comuni
+
+#QUESTA CLASSE HA FUNZIONATO DOVE L'ANALISI SINTATTICA DI COSINESIMANALISYSNEWS HA FALLITO
 fake = "Posted on November 4, 2016 by Charles Hugh Smith \nThe overwhelming consensus of the punditry across the political spectrum is that ?Nothing Good Can Come of This Election??and that?s a very good thing. The handwringing goes like this: The country is deeply divided by schisms that cannot be bridged, every institution from the two parties to the mainstream media to the Department of Justice has been tarnished by cover-ups, collusion or worse; whomever wins the election will enter the presidency without a mandate, and so on. \nWhy is ?nothing good can come of this? good? Because ridding the nation of its political corruption will require hitting bottom. \nJust as an alcoholic or drug addict is incapable of making any truly positive changes until he/she hits absolute bottom, so it is with our tolerance of a corrupt political system that is poisoning the nation, one injection of corrupt cash, collusion and pay-to-play at a time. \nIf our rotten-to-the-core politics as usual is indeed flying off the cliff to complete destruction, that is an unalloyed good. \nJust as alcoholics continue down their self-destructive path with the aid of enablers, so too has the corrupt political order expanded with the aid of the Mainstream Media, insiders in the Department of Justice, K Street lobbyists and a veritable army of well-paid lackeys, pundits, academics, apparatchiks and assorted toadies in the organs of governance and in the big-money private sector and philanthro-capitalist dynasties of pay-to-play foundations. \nThe only way anything will truly change in the political order is if every Establishment insider politico loses every election, from the presidency to dogcatcher. Nothing will change until the mere existence of a private foundation like the Clinton Foundation triggers a landslide loss for the politico with ties to such corruption. \nNothing will change until the collusion of the mainstream media (supplying the insider candidate with debate questions, etc.) alone causes the colluding candidate to lose by a landslide. \nNothing will change until candidates who refuse to accept any donation larger than $100 from anyone or any entity beat the Goldman Sachs/Saudi prince-funded insider candidates by a landslide. \nNothing will change until candidates who fund costly negative TV advertising campaigns with millions in pay-to-play ?contributions? from Goldman Sachs et al. lose by a landslide. \nYou get the point: we the citizens and voters have to stop being enablers of systemic corruption. We have to stop being bamboozled by insiders with promises of ?hope and change? and the usual negative TV blitzes funded by corrupt big money. \nIt?s easy to blame lax campaign laws or the corrupted candidates and their insider toadies, but ultimately we?re responsible for enabling corruption, collusion, pay-for-play and a political and financial Elite that?s above the law. \nFrom the point of view of the corrupted, colluding insiders, MSM flunkies, Department of Justice lackeys and well-paid parrot-pundits, nothing good can come from this election because half the voters may actually cast off the shackles of the nation?s corrupt and corrupting political and financial Elites. \nThis mass rejection of the politics as usual of corrupt and corrupting political and financial Elites is the highest possible good ?a public good that eludes the hand-wringing corrupt insiders, pundits and toadies who have sucked up fortunes from the trough of putrid systemic corruption.".replace('\n', '')
 fake2 = "BREAKING: Trump Jumps in FL, Takes 4 Point Lead in OH \nWilliams, who has publicly stated that he was not a Trump supporter, is nevertheless a man of honor and integrity. He doesn?t sell his values to common thugs who use bylines as weapons. \nAccording to both Williams and his attorney, Jonathan Franks, Jacob Bernstein from The Times approached Williams, asking for cooperation on a story alleging that people who live in Trump-branded buildings want the Trump name removed in light of the very difficult and contentious 2016 election season. \nWilliams, an independent who lives in a Trump-developed New York building, declined to cooperate.   \nAccording to Franks, Bernstein replied to a specific request not to print Williams? address by stating he ?would be more likely to extend that courtesy if Montel gave an interview.? \nProtecting another person?s privacy, especially the privacy of the ballot box, is not a special courtesy. It?s simply common decency. \nThe Washington Examiner took their colleagues at The Times to task for this low-life journalism, noting that Williams identifies as a conservative but is not a registered Republican. He endorsed Ohio Gov. John Kasich in the 2016 GOP primary and has publicly credited Kasich for bringing him back into the conservative fold. \nPlease share this article on Facebook and Twitter to help expose the media?s liberal bias.  ".replace('\n', '')
 fake3 = "vladimir putin , Valdai , sochi , RBTH Daily Russian President Vladimir Putin. Source: Kremlin.ru \nRussian President Vladimir Putin has said that the use of what he described as a \"mythical\" Russian military threat is \"a profitable business.\" \nThe Russian leader made this statement on Oct. 27 at a session of the Valdai international discussion club in Sochi. \n\"Fabricated, mythical threats like the so-called Russian military threat are constantly repeated. This is, indeed, a profitable business to seek new budgets in countries and press allies to fit the interests of one superpower, expand NATO and bring the alliance?s infrastructure, combat units and military hardware to our borders,\" said Putin. \n\"The truth is, however, that Russia is not going to attack anyone, that?s ridiculous,\" he continued.".replace('\n', '')
@@ -63,71 +86,131 @@ real8 = "It was inevitable that liberals would end up being condemned for the ho
 real9 = "Police in Charleston, S.C., say a man they suspect opened fire and killed nine people during a Wednesday prayer meeting at one of the city's oldest historically black churches has been captured.\n\nPolice are calling the attack a hate crime, and they released stills from a security video that authorities say show 21-year-old Dylann Roof entering the Emanuel African Methodist Episcopal Church.\n\nRoof, police said, sat with the congregation for about an hour before he opened fire at around 9 p.m. ET. He left the church in a black sedan, unleashing an overnight manhunt that involved local and federal law enforcement.\n\nPolice apprehended the lone suspect during a traffic stop in Shelby, N.C., an almost four-hour drive from Charleston. Roof waived extradition during a court appearance in Shelby and will be headed back to South Carolina.\n\nCharleston Mayor Joseph Riley said the arrest is a part of the healing process that has just begun.\n\n\"In America we don't let people like this get away with this dastardly deed,\" Riley said.\n\nIn a statement from the White House, President Obama meditated on the history of the church, which he called a \"sacred place in the history of Charleston and in the history of America.\"\n\nHe said the Emanuel AME is a church that has seen tragedy in the past. It was burned to the ground because its worshippers wanted to end slavery. It's a place where civil rights leaders spoke and led marches in search for freedom.\n\nObama said it's a tragedy anytime Americans die in a situation like this, but it's especially heartbreaking when it happens \"at a place where people are seeking peace.\"\n\nObama quoted a eulogy Martin Luther King Jr. delivered at the funeral service for three of the four children who were killed in the 1963 bombing of a Baptist church in Birmingham.\n\nIn death, King said, those three little girls told America \"that we must be concerned not merely about who murdered them, but about the system, the way of life, the philosophy which produced the murderers.\"\n\nAt an earlier press conference, Charleston Police Chief Gregory Mullen said: \"It is senseless, it is unfathomable, that in today's society somebody would walk into a church, into a prayer meeting, and take lives.\"\n\nState Sen. Clementa C. Pinckney, who was also the senior pastor at Emanuel AME Church, was one of the people killed during the attack.\n\nThe President Pro Tempore of South Carolina's Senate, Hugh Leatherman, said Pinckney was \"a strong advocate for his constituents, a great pastor and community leader, but most importantly, a cherished and loved husband, father and son.\"\n\nHe continued: \"The victims were in a Bible study, learning the Word of God, in one of the most beloved institutions in our State whose roots go back to the dark days of slavery. What happened last night is incomprehensible.\"\n\nThe Charleston County coroner identified the nine victims as Cynthia Hurd, 54; Daniel Simmons Sr., 74; Rev. Clementa Pinckney, 41; Rev. Sharonda Coleman-Singleton, 45; Ethel Lance, 70; Tywanza Sanders, 26; Myra Thompson, 59; Susie Jackson, 87; and Depayne Middleton Doctor, 49. All the victims, but Simmons, died at the scene. Simmons died in hospital.\n\nIn a short speech at the White House, President Obama said that he was restrained by what he could say about the facts of case, but he was not constrained by emotion.\n\nObama said that it is tragic anytime Americans die in a situation like this. But it is especially heartbreaking when it happens \"at a place where people are seeking peace.\"\n\nHe said the Emanuel AME is a church that has seen tragedy in the past. It was burned to the ground because its worshippers wanted to end slavery. It's a place where civil rights leaders spoke and led marches in search for freedom.\n\n\"This is a sacred place in the history of Charleston and in the history of America,\" Obama said.\n\nToday, he said, marks another attempt against a black church in the United States. And like this church, and others like it, have rebuilt in the past, Mother Emanuel \"will rise again, now.\"\n\nUpdate at 12 p.m. ET. Tip Led To Arrest:\n\nDuring a news conference, Charleston Police Chief Gregory Mullen said a civilian called police to report suspicious activity.\n\nPolice followed up on the tip and quickly figured out that they were dealing with shooting suspect Dylann Roof, who was arrested without incident.\n\nMullen, who would not comment on whether Roof had any weapons on him, said that Roof was cooperative.\n\nMullen said that police had yet to determine a motive.\n\nUpdate at 11:13 a.m. ET. Barbaric Crime:\n\n\"Acts like this one have no place in our country and no place in a civilized society,\" she said.\n\nLynch said that federal authorities are working closely with local authorities to try to apprehend the suspect.\n\nPresident Obama is expected to make a statement at 11:45 a.m. ET.\n\nUpdate at 11:10 a.m. ET. Two Previous Arrests:\n\nA search of public records finds that Dylann Roof had two recent court cases against him ? one for trespassing, one for drug possession.\n\nUpdate at 10:33 a.m. ET. Suspect Identified:\n\nThe city of Charleston said police have named a suspect: 21-year-old Dylann Roof.\n\n\"The vehicle he may be driving is a black Hyundai with vehicle tag LGF330. Anyone with information about his location call 1-800-CALL-FBI,\" the city said in a statement.\n\nThe Southern Poverty Law Center, which tracks extremist groups, tweeted a photograph of the suspect sporting a jacket with what appears to be the flag for \"white-rule Rhodesia, now Zimbabwe.\"\n\nAnother patch on the jacket, the SPLC says, shows a South African apartheid era flag.\n\nUpdate at 9:35 a.m. ET. A 'Beloved Senator':\n\nThe President Pro Tempore of South Carolina Senate, Hugh Leatherman, said Sen. Pinckney was a \"beloved\" public servant.\n\n\"Senator Clementa C. Pinckney was a leader in the Senate of South Carolina, a strong advocate for his constituents, a great pastor and community leader, but most importantly, a cherished and loved husband, father and son,\" Leatherman said in a statement. \"The entire Senate of South Carolina extends our love and sympathy to Jennifer, Eliana, Malana, and to the rest of his family.\"\n\nUpdate at 9:05 a.m. ET. State Senator Among Those Killed:\n\nState Sen. Clementa C. Pinckney, who was also the senior pastor at Emanuel AME Church, was one of the people killed during the attack, according to multiple news outlets as well as the chairman of the South Carolina Democratic Party.\n\nUpdate at 8:43 a.m. ET. Federal Hate Crime Investigation:\n\nUpdate at 7:17 a.m. ET. Suspect Sat With Congregation For An Hour:\n\nDuring a press conference just minutes ago, Charleston Police Chief Gregory Mullen said the suspect sat with the congregation in prayer for about an hour before opening fire.\n\nThe suspect ultimately killed 9 people ? six females and three males. Three others survived.\n\nMullen said that law enforcement from all along the East Coast are helping in the investigation and the FBI and the ATF have come in from D.C.\n\n\"This tragedy that we're addressing right now is indescribable,\" Mullen said. \"No one in this community will ever forget this night ... and because of the pain and the hurt this individual has caused this community ... the law enforcement officials working on this are committed and we will catch this individual.\"\n\nMullen called on anyone with information about the suspect to call 1-800-Call-FBI, but said that they should not approach the suspect because he is \"very dangerous.\"\n\nCharleston Mayor Joseph Riley Jr. said that last night that he and the police chief \"hugged as many\" of the victims' families as they could. He said they saw weeping mothers, fathers, grandmothers and grandfathers.\n\nRiley said this attack has ripped a part of the community's fabric forever.\n\n\"But we will work to heal them, to love them and support them in that church as long as we live,\" Riley said.\n\nUpdate at 6:50 a.m. ET. What Happened?\n\nAccording to The Post and Courier of Charleston, a gunman entered the church on Wednesday evening, as members of the church gathered for a prayer meeting.\n\nThe Emanuel AME Church website says that church is the oldest African Methodist Episcopal church in the South. \"Emanuel has one of the largest and oldest black congregations south of Baltimore, Maryland,\" the website says.".replace('\n', '')
 real10 = "Silver of FiveThirtyEight.com has laid out four possible outcomes to the race at this point, with all but one featuring a Clinton win:\n\nA Trump win, including cases where he loses the popular vote but wins the Electoral College. A narrow Clinton win, wherein she wins the Electoral College, but wins the popular vote by 3 percentage points or less. (Or wins the Electoral College and loses the popular vote.) A Clinton win in the ?Obama zone,? wherein she wins the popular vote by 4 to 7 percentage points ? the margins by which President Obama won the elections in 2012 and 2008, respectively. Clinton is all but certain to win the Electoral College if she wins the popular vote by this amount. Finally, a Clinton blowout, wherein she wins the popular vote by 8 points or more, which would almost certainly also yield a dominant performance in the Electoral College.\n\nFiveThirtyEight?s model, which averages polls, shows that Clinton has an 85 percent probability of winning and is currently ahead by 6.6 points.\n\nFor its part, The New York Times Upshot has a 92 percent probability of a Clinton win and shows see side-by-side comparisons of all the predictions. They all have Clinton with 85 percent or higher. Using its customary metaphor, the Upshot compares the chances of Clinton losing ?to the probability that an NFL kicker misses a 29-yard field goal.? That indeed happens (in fact, it happened on Sunday night) so Democrats should not get complacent.\n\nAnd for down ballot races? Well, there always has been a decent possibility that the Democrats would win the Senate if they retain the White House, simply because this is a cycle when Republicans are defending more seats. Still, that outcome is anything but assured, and some analysts are insisting (without evidence) that this year will feature lots of ticket splitting (that is, people who vote for Clinton but also vote for a Republican incumbent senator, for example).\n\nStill, this cycle is nothing if not unpredictable, so who knows?\n\nDemocrats had written off the House from the beginning: GOP gerrymandering all over the country makes it nearly impossible for Democrats to win a majority in the House until another round of redistricting after the 2020 census. Still, the possibility, however remote, is starting to be discussed.\n\nSam Wang from the Princeton Election Consortium said:\n\nI estimate that Democrats must win the national popular vote by 8% to have any chance at taking control of the House. This large margin is driven by two major factors in equal measure: gerrymandering to pack Democrats into districts, and population patterns which they pack themselves. Therefore the magic number for House Democrats is a Clinton win by 8%. In national polls Clinton is currently ahead by 5% (7 polls starting on October 10th or later), and Obama outperformed his 2012 polls by 3%, so it?s not crazy to imagine. I?d give the House Democrats a 1 in 5 chance of making it over this bar. A long shot . . . but not a crazy long shot.\n\nSo what?s happening to make this dramatic shift in October? Clinton had been leading throughout the summer, but on Sept. 26, the day of the first debate, FiveThirtyEight had Donald Trump with a 51 percent chance of winning. The candidates were tied nationally at 45 percent, and the trend was moving in his favor. The obvious answer is that Trump blew it when he made a fool of himself in the aftermath of the first debate with his 3 a.m. tweets about the former Miss Universe. Since then he has been accused by a dozen women of groping and assaulting them against their will. That ?Access Hollywood? tape was a shocker. Most observers see the huge and growing gender gap as a result of all that grossness. But something else happened as well. For about a month before that first debate the right-wing media and people in or around the Trump campaign had been spreading spurious rumors that Clinton had brain damage or Parkinson?s disease. This was barely covered in the mainstream media, but everyone in the media pays attention to Matt Drudge, who had been relentless with the story, so they were very much aware of such rumors. When Clinton had her fainting spell at the 9/11 ceremony in New York, the press spent days feigning anger about her failure to keep them properly informed about the details of her doctor?s appointments and diagnosis. (That?s despite campaign professionals saying they would never inform the press of anything like that, mainly because such illnesses are so common on the trail.) Unfortunately for Clinton, the combined effect of the right?s relentless smears about some kind of disqualifying terminal illness and the press fulminating for days over her pneumonia advanced the idea that she lacked the ?strength and stamina? required for the job. Coincidentally or otherwise, this was the very charge that Trump had been making for months. By the time of the first debate in late September Clinton had been off the trail for quite a bit, first recovering from her pneumonia and then doing debate prep, with Trump nipping at her heels. When she showed up looking very healthy, sharp and aggressive, it changed the narrative overnight. Indeed, her ability to bait him into misbehavior had her dominating that debate from beginning to end, when she hit him with the Alicia Machado story that had him reeling for days afterward. So it?s true that Trump?s poll numbers have been cratering for a month now, pointing to what may be a catastrophic loss for the Republicans. Much of that happened because of revelations about Trump?s horrifying misogyny and his ongoing inability to behave with any discipline. But it?s a mistake to discount the huge effect of the debates, well beyond Trump?s predictably ridiculous performance. These were the first occasions since the Benghazi hearings for people to see what Clinton is made of, and it reminded them of the characteristics that make her a formidable leader. When she stood there, face-to-face with Trump, it was clear that one of them was a president. And it wasn?t him.".replace('\n', '')
 
-'''vector1 = text_to_vector(real)
-vector2 = text_to_vector(real2)
-vector3 = text_to_vector(real3)
-vector4 = text_to_vector(real4)
-vector5 = text_to_vector(real5)
-vector6 = text_to_vector(real6)
-vector7 = text_to_vector(real7)
-vector8 = text_to_vector(real8)
-vector9 = text_to_vector(real9)
-vector10 = text_to_vector(real10)'''
 
-vector1 = text_to_vector(fake)
-vector2 = text_to_vector(fake2)
-vector3 = text_to_vector(fake3)
-vector4 = text_to_vector(fake4)
-vector5 = text_to_vector(fake5)
-vector6 = text_to_vector(fake6)
-vector7 = text_to_vector(fake7)
-vector8 = text_to_vector(fake8)
-vector9 = text_to_vector(fake9)
-vector10 = text_to_vector(fake10)
+#Effettua lo stopping, eliminando le parole comuni prive di significato
+def stopStemGram(text):
+    stopwords_en = set(stopwords.words('english'))
 
-def cosineSim(vector1):
-    with open(Real_dataset_GraphAnalysis,'r') as dataset:
-        conta = 0
+    sents = nltk.sent_tokenize(text)
+
+    sents_rm_stopwords = []
+    for sent in sents:
+        sents_rm_stopwords.append(' '.join(w for w in nltk.word_tokenize(sent) if w.lower() not in stopwords_en))
+
+    fakestr1 = "".join(sents_rm_stopwords)
+    fakestr = re.sub(r'[^\w\s]','',fakestr1)
+    fakestr = [re.sub(' +',' ',fakestr)]
+    #print("stopping:")
+    #print(fakestr)
+
+    #Effettua lo stemming delle parole della notizia
+    ps = PorterStemmer()
+    final = [" ".join([ps.stem(token) for token in sentence.split(" ")]) for sentence in fakestr]
+    fakestrfinal = "".join(final)
+    #print("stemming:")
+    #print(fakestrfinal)
+
+    #Effettua la divisione del testo in trigrammi
+    n = 3
+    trigramsFake = list(ngrams(fakestrfinal.lower().split(), n))
+    return trigramsFake
+
+gram1 = stopStemGram(fake)
+gram2 = stopStemGram(fake2)
+gram3 = stopStemGram(fake3)
+gram4 = stopStemGram(fake4)
+gram5 = stopStemGram(fake5)
+gram6 = stopStemGram(fake6)
+gram7 = stopStemGram(fake7)
+gram8 = stopStemGram(fake8)
+gram9 = stopStemGram(fake9)
+gram10 = stopStemGram(fake10)
+
+'''gram1 = stopStemGram(real)
+gram2 = stopStemGram(unicode(real2, 'latin-1'))
+gram3 = stopStemGram(real3)
+gram4 = stopStemGram(real4)
+gram5 = stopStemGram(real5)
+gram6 = stopStemGram(real6)
+gram7 = stopStemGram(real7)
+gram8 = stopStemGram(unicode(real8, 'latin-1'))
+gram9 = stopStemGram(real9)
+gram10 = stopStemGram(real10)'''
+
+
+
+
+def findMinMaxSimText(trigrams1):
+    n = 3
+    cont = 0
+    contatore = 0
+    trigramsDict = {}
+    with open(Real_dataset_GraphAnalysis, 'r') as dataset:
         for line in dataset:
-            article = ast.literal_eval(line)
-            text2 = article['text']
-            vector2 = text_to_vector(text2)
-            cosine = get_cosine(vector1, vector2)
-            cosineSimDict[conta] = cosine
-            conta+=1
-            print 'Cosine:', cosine
+            #if cont != 10:
+                article = ast.literal_eval(line)
+                lineReal = article['text'].replace('\n', '')
+                lineReal2 = lineReal.decode('utf8').encode('ascii', errors='ignore')
 
-        SortedDict = sorted(cosineSimDict.items(), key=lambda x: x[1])
-        SortedDict.reverse()
+                #Effettua lo stopping della real news
+                stopwords_en = set(stopwords.words('english'))
+                sents = nltk.sent_tokenize(lineReal2)
 
-    return SortedDict
+                sents_rm_stopwords2 = []
+                for sent in sents:
+                    sents_rm_stopwords2.append(' '.join(w for w in nltk.word_tokenize(sent) if w.lower() not in stopwords_en))
+
+                realstrfinal1 = "".join(sents_rm_stopwords2)
+                realstrfinal = re.sub(r'[^\w\s]', '', realstrfinal1)
+                realstrfinal = [re.sub(' +', ' ', realstrfinal)]
+
+                # Effettua lo stemming della real news
+                ps = PorterStemmer()
+                final = [" ".join([ps.stem(token) for token in sentence.split(" ")]) for sentence in realstrfinal]
+                realstrfinal = "".join(final)
+
+                #print(realstrfinal)
+
+                #Dividi la real news in trigrammi
+                trigramsReal = list(ngrams(realstrfinal.lower().split(), n))
+
+                #Compara i trigrammi real e fake e salva i risultati della comparazione nel dizionario
+                result = compare(trigrams1,trigramsReal)
+                trigramsDict[cont] = result
+                print(cont)
+                cont+=1
+
+        #print(trigramsDict)
+        sortedNgrams = sorted(trigramsDict.items(), key=lambda x: x[1])
+        sortedNgrams.reverse()
+        return sortedNgrams
 
 
-dict1 = cosineSim(vector1)
-print(dict1)
+
+dict1 = findMinMaxSimText(gram1)
 list1 = ListFromDict(dict1)
-dict2 = cosineSim(vector2)
+dict2 = findMinMaxSimText(gram2)
 list2 = ListFromDict(dict2)
-dict3 = cosineSim(vector3)
+dict3 = findMinMaxSimText(gram3)
 list3 = ListFromDict(dict3)
-dict4 = cosineSim(vector4)
+dict4 = findMinMaxSimText(gram4)
 list4 = ListFromDict(dict4)
-dict5 = cosineSim(vector5)
+dict5 = findMinMaxSimText(gram5)
 list5 = ListFromDict(dict5)
-dict6 = cosineSim(vector6)
+dict6 = findMinMaxSimText(gram6)
 list6 = ListFromDict(dict6)
-dict7 = cosineSim(vector7)
+dict7 = findMinMaxSimText(gram7)
 list7 = ListFromDict(dict7)
-dict8 = cosineSim(vector8)
+dict8 = findMinMaxSimText(gram8)
 list8 = ListFromDict(dict8)
-dict9 = cosineSim(vector9)
+dict9 = findMinMaxSimText(gram9)
 list9 = ListFromDict(dict9)
-dict10 = cosineSim(vector10)
+dict10 = findMinMaxSimText(gram10)
 list10 = ListFromDict(dict10)
 
-#Salva la notizia con valore di coseno similarita' piu' alto e più basso e ritrovale nel dataset.
-#I DATASET FAKE O REAL PASSATI IN QUESTO PUNTO SONO STATI RIPULITI DELLE NOTIZIE O CON CAMPO TEXT VUOTO OPPURE CON TEXT NON SIGNIFICATIVO (CONTENENTE AD ESEMPIO SOLO UNA O DUE PAROLE) PER EVITARE UNA PERDITA DI EFFICACIA NEL CALCOLO DELLA SIMILARITA'
-def FindMinMaxSimText(dict):
+
+
+def FindMinMaxSimText2(dict):
     contatore = 0
     contatore2 = 0
     maxSim = dict[0][0]
@@ -151,90 +234,92 @@ def FindMinMaxSimText(dict):
     print(NewsWithMaxSim)
     print("\n ----------------------------------------------------------------------------------------------------------------------------------\n ")
 
-def fakePrint():
+def printFake():
     print("News1 inserita:\n")
     print(fake + "\n")
-    FindMinMaxSimText(dict1)
+    FindMinMaxSimText2(dict1)
 
     print("News2 inserita:\n")
     print(fake2 + "\n")
-    FindMinMaxSimText(dict2)
+    FindMinMaxSimText2(dict2)
 
     print("News3 inserita:\n")
     print(fake3 + "\n")
-    FindMinMaxSimText(dict3)
+    FindMinMaxSimText2(dict3)
 
     print("News4 inserita:\n")
     print(fake4 + "\n")
-    FindMinMaxSimText(dict4)
+    FindMinMaxSimText2(dict4)
 
     print("News5 inserita:\n")
     print(fake5 + "\n")
-    FindMinMaxSimText(dict5)
+    FindMinMaxSimText2(dict5)
 
     print("News6 inserita:\n")
     print(fake6 + "\n")
-    FindMinMaxSimText(dict6)
+    FindMinMaxSimText2(dict6)
 
     print("News7 inserita:\n")
     print(fake7 + "\n")
-    FindMinMaxSimText(dict7)
+    FindMinMaxSimText2(dict7)
 
     print("News8 inserita:\n")
     print(fake8 + "\n")
-    FindMinMaxSimText(dict8)
+    FindMinMaxSimText2(dict8)
 
     print("News9 inserita:\n")
     print(fake9 + "\n")
-    FindMinMaxSimText(dict9)
+    FindMinMaxSimText2(dict9)
 
     print("News10 inserita:\n")
     print(fake10 + "\n")
-    FindMinMaxSimText(dict10)
+    FindMinMaxSimText2(dict10)
 
 
-def realPrint():
+
+def printReal():
     print("News1 inserita:\n")
     print(real + "\n")
-    FindMinMaxSimText(dict1)
+    FindMinMaxSimText2(dict1)
 
     print("News2 inserita:\n")
     print(real2 + "\n")
-    FindMinMaxSimText(dict2)
+    FindMinMaxSimText2(dict2)
 
     print("News3 inserita:\n")
     print(real3 + "\n")
-    FindMinMaxSimText(dict3)
+    FindMinMaxSimText2(dict3)
 
     print("News4 inserita:\n")
     print(real4 + "\n")
-    FindMinMaxSimText(dict4)
+    FindMinMaxSimText2(dict4)
 
     print("News5 inserita:\n")
     print(real5 + "\n")
-    FindMinMaxSimText(dict5)
+    FindMinMaxSimText2(dict5)
 
     print("News6 inserita:\n")
     print(real6 + "\n")
-    FindMinMaxSimText(dict6)
+    FindMinMaxSimText2(dict6)
 
     print("News7 inserita:\n")
     print(real7 + "\n")
-    FindMinMaxSimText(dict7)
+    FindMinMaxSimText2(dict7)
 
     print("News8 inserita:\n")
     print(real8 + "\n")
-    FindMinMaxSimText(dict8)
+    FindMinMaxSimText2(dict8)
 
     print("News9 inserita:\n")
     print(real9 + "\n")
-    FindMinMaxSimText(dict9)
+    FindMinMaxSimText2(dict9)
 
     print("News10 inserita:\n")
     print(real10 + "\n")
-    FindMinMaxSimText(dict10)
+    FindMinMaxSimText2(dict10)
 
-fakePrint()
+printFake()
 
 #Crea il grafo delle News
-GraphCreator.createGraph(list1, list2, list3, list4, list5, list6, list7, list8, list9, list10, len(list1), 2)
+GraphCreator.createGraph(list1, list2, list3, list4, list5, list6, list7, list8, list9, list10, len(list1), 14)
+

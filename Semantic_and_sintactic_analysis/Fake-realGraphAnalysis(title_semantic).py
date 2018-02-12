@@ -1,38 +1,29 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
+import os, sys
 import ast
-import math
-import re
-from collections import Counter
+
+import spacy
 
 import GraphCreator
 from Variables import *
 
-#Questa classe calcola in maniera efficiente (circa 4 secondi)
-# la realnews corrispondente ad una notizia fake inserita
+nlp = spacy.load('en')
 
 conta = 0
 contatore = 0
 cosineSimDict = {}
-WORD = re.compile(r'\w+')
 
-def get_cosine(vec1, vec2):
-     intersection = set(vec1.keys()) & set(vec2.keys())
-     numerator = sum([vec1[x] * vec2[x] for x in intersection])
-
-     sum1 = sum([vec1[x]**2 for x in vec1.keys()])
-     sum2 = sum([vec2[x]**2 for x in vec2.keys()])
-     denominator = math.sqrt(sum1) * math.sqrt(sum2)
-
-     if not denominator:
-        return 0.0
-     else:
-        return float(numerator) / denominator
-
-
-def text_to_vector(text):
-     words = WORD.findall(text)
-     return Counter(words)
+cont = 0
+docs = []
+with open(Real_dataset_GraphAnalysis, 'r') as dataset:
+    for line in dataset:
+        #if cont != 10:
+            article = ast.literal_eval(line)
+            text = article['title'].replace('\n', '')
+            docs.append(nlp(unicode(text, errors='replace')))
+            print(cont)
+            cont += 1
 
 def ListFromDict(dict) :
     list = []
@@ -63,67 +54,67 @@ real9 = "Police Arrest Suspect In Charleston Church Shooting".replace('\n', '')
 real10 = "Donald Trump?s collapse was caused by one big factor: Hillary Clinton".replace('\n', '')
 
 
-'''vector1 = text_to_vector(real)
-vector2 = text_to_vector(real2)
-vector3 = text_to_vector(real3)
-vector4 = text_to_vector(real4)
-vector5 = text_to_vector(real5)
-vector6 = text_to_vector(real6)
-vector7 = text_to_vector(real7)
-vector8 = text_to_vector(real8)
-vector9 = text_to_vector(real9)
-vector10 = text_to_vector(real10)'''
+def semanticSim(docs,text):
+    SemanticSimDict = {}
+    contatore = 0
 
-vector1 = text_to_vector(fake)
-vector2 = text_to_vector(fake2)
-vector3 = text_to_vector(fake3)
-vector4 = text_to_vector(fake4)
-vector5 = text_to_vector(fake5)
-vector6 = text_to_vector(fake6)
-vector7 = text_to_vector(fake7)
-vector8 = text_to_vector(fake8)
-vector9 = text_to_vector(fake9)
-vector10 = text_to_vector(fake10)
+    for doc in docs:
+        news = nlp(unicode(text, "latin-1"))
+        SemanticSimDict[contatore] = doc.similarity(news)
+        print(doc.similarity(news))
+        contatore += 1
 
-def cosineSim(vector1):
-    with open(Real_dataset_GraphAnalysis,'r') as dataset:
-        conta = 0
-        for line in dataset:
-            article = ast.literal_eval(line)
-            text2 = article['title']
-            vector2 = text_to_vector(text2)
-            cosine = get_cosine(vector1, vector2)
-            cosineSimDict[conta] = cosine
-            conta+=1
-            print 'Cosine:', cosine
-
-        SortedDict = sorted(cosineSimDict.items(), key=lambda x: x[1])
-        SortedDict.reverse()
-
+    SortedDict = sorted(SemanticSimDict.items(), key=lambda x: x[1])
+    SortedDict.reverse()
     return SortedDict
 
 
-dict1 = cosineSim(vector1)
-print(dict1)
+dict1 = semanticSim(docs,fake)
 list1 = ListFromDict(dict1)
-dict2 = cosineSim(vector2)
+dict2 = semanticSim(docs,fake2)
 list2 = ListFromDict(dict2)
-dict3 = cosineSim(vector3)
+dict3 = semanticSim(docs,fake3)
 list3 = ListFromDict(dict3)
-dict4 = cosineSim(vector4)
+dict4 = semanticSim(docs,fake4)
 list4 = ListFromDict(dict4)
-dict5 = cosineSim(vector5)
+dict5 = semanticSim(docs,fake5)
 list5 = ListFromDict(dict5)
-dict6 = cosineSim(vector6)
+dict6 = semanticSim(docs,fake6)
 list6 = ListFromDict(dict6)
-dict7 = cosineSim(vector7)
+dict7 = semanticSim(docs,fake7)
 list7 = ListFromDict(dict7)
-dict8 = cosineSim(vector8)
+dict8 = semanticSim(docs,fake8)
 list8 = ListFromDict(dict8)
-dict9 = cosineSim(vector9)
+dict9 = semanticSim(docs,fake9)
 list9 = ListFromDict(dict9)
-dict10 = cosineSim(vector10)
+dict10 = semanticSim(docs,fake10)
 list10 = ListFromDict(dict10)
+
+
+
+
+'''dict1 = semanticSim(docs,real)
+list1 = ListFromDict(dict1)
+dict2 = semanticSim(docs,real2)
+list2 = ListFromDict(dict2)
+dict3 = semanticSim(docs,real3)
+list3 = ListFromDict(dict3)
+dict4 = semanticSim(docs,real4)
+list4 = ListFromDict(dict4)
+dict5 = semanticSim(docs,real5)
+list5 = ListFromDict(dict5)
+dict6 = semanticSim(docs,real6)
+list6 = ListFromDict(dict6)
+dict7 = semanticSim(docs,real7)
+list7 = ListFromDict(dict7)
+dict8 = semanticSim(docs,real8)
+list8 = ListFromDict(dict8)
+dict9 = semanticSim(docs,real9)
+list9 = ListFromDict(dict9)
+dict10 = semanticSim(docs,real10)
+list10 = ListFromDict(dict10)'''
+
+
 
 #Salva la notizia con valore di coseno similarita' piu' alto e più basso e ritrovale nel dataset.
 #I DATASET FAKE O REAL PASSATI IN QUESTO PUNTO SONO STATI RIPULITI DELLE NOTIZIE O CON CAMPO TEXT VUOTO OPPURE CON TEXT NON SIGNIFICATIVO (CONTENENTE AD ESEMPIO SOLO UNA O DUE PAROLE) PER EVITARE UNA PERDITA DI EFFICACIA NEL CALCOLO DELLA SIMILARITA'
@@ -151,8 +142,7 @@ def FindMinMaxSimText(dict):
     print(NewsWithMaxSim)
     print("\n ----------------------------------------------------------------------------------------------------------------------------------\n ")
 
-
-def fakePrint():
+def printFake():
     print("News1 inserita:\n")
     print(fake + "\n")
     FindMinMaxSimText(dict1)
@@ -194,7 +184,8 @@ def fakePrint():
     FindMinMaxSimText(dict10)
 
 
-def realPrint():
+
+def printReal():
     print("News1 inserita:\n")
     print(real + "\n")
     FindMinMaxSimText(dict1)
@@ -235,7 +226,7 @@ def realPrint():
     print(real10 + "\n")
     FindMinMaxSimText(dict10)
 
-fakePrint()
+printFake()
 
 #Crea il grafo delle News
-GraphCreator.createGraph(list1, list2, list3, list4, list5, list6, list7, list8, list9, list10, len(list1), 0)
+GraphCreator.createGraph(list1, list2, list3, list4, list5, list6, list7, list8, list9, list10, len(list1), 10)

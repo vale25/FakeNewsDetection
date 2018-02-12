@@ -32,7 +32,7 @@ def ListFromDict(dict) :
     return list
 
 fake = "Posted on November 4, 2016 by Charles Hugh Smith \nThe overwhelming consensus of the punditry across the political spectrum is that ?Nothing Good Can Come of This Election??and that?s a very good thing. The handwringing goes like this: The country is deeply divided by schisms that cannot be bridged, every institution from the two parties to the mainstream media to the Department of Justice has been tarnished by cover-ups, collusion or worse; whomever wins the election will enter the presidency without a mandate, and so on. \nWhy is ?nothing good can come of this? good? Because ridding the nation of its political corruption will require hitting bottom. \nJust as an alcoholic or drug addict is incapable of making any truly positive changes until he/she hits absolute bottom, so it is with our tolerance of a corrupt political system that is poisoning the nation, one injection of corrupt cash, collusion and pay-to-play at a time. \nIf our rotten-to-the-core politics as usual is indeed flying off the cliff to complete destruction, that is an unalloyed good. \nJust as alcoholics continue down their self-destructive path with the aid of enablers, so too has the corrupt political order expanded with the aid of the Mainstream Media, insiders in the Department of Justice, K Street lobbyists and a veritable army of well-paid lackeys, pundits, academics, apparatchiks and assorted toadies in the organs of governance and in the big-money private sector and philanthro-capitalist dynasties of pay-to-play foundations. \nThe only way anything will truly change in the political order is if every Establishment insider politico loses every election, from the presidency to dogcatcher. Nothing will change until the mere existence of a private foundation like the Clinton Foundation triggers a landslide loss for the politico with ties to such corruption. \nNothing will change until the collusion of the mainstream media (supplying the insider candidate with debate questions, etc.) alone causes the colluding candidate to lose by a landslide. \nNothing will change until candidates who refuse to accept any donation larger than $100 from anyone or any entity beat the Goldman Sachs/Saudi prince-funded insider candidates by a landslide. \nNothing will change until candidates who fund costly negative TV advertising campaigns with millions in pay-to-play ?contributions? from Goldman Sachs et al. lose by a landslide. \nYou get the point: we the citizens and voters have to stop being enablers of systemic corruption. We have to stop being bamboozled by insiders with promises of ?hope and change? and the usual negative TV blitzes funded by corrupt big money. \nIt?s easy to blame lax campaign laws or the corrupted candidates and their insider toadies, but ultimately we?re responsible for enabling corruption, collusion, pay-for-play and a political and financial Elite that?s above the law. \nFrom the point of view of the corrupted, colluding insiders, MSM flunkies, Department of Justice lackeys and well-paid parrot-pundits, nothing good can come from this election because half the voters may actually cast off the shackles of the nation?s corrupt and corrupting political and financial Elites. \nThis mass rejection of the politics as usual of corrupt and corrupting political and financial Elites is the highest possible good ?a public good that eludes the hand-wringing corrupt insiders, pundits and toadies who have sucked up fortunes from the trough of putrid systemic corruption.".replace('\n', '')
-fake2 = "Charlie Baker , Massachusetts (2015?present)[31] R obert J. Bentley , Alabama (2011?present) (withdrew endorsement)[32] Dennis Daugaard , South Dakota (2011?present) (withdrew endorsement, called on Trump to withdraw his candidacy)[33] Bill Haslam , Tennessee (2011?present)[34] Gary Herbert , Utah (2009?present) (withdrew endorsement)[35] Larry Hogan , Maryland (2015?present)[36][37] Susana Martinez , New Mexico (2011?present); Chair of the Republican Governors Association (2015?present)[38] Brian Sandoval , Nevada (2011?present) (withdrew endorsement)[39] Rick Snyder , Michigan (2011?present)[40] \nFormer Former Massachusetts Governor and 2012 nominee for President Mitt Romney Arne Carlson , Minnesota (1991?99) (endorsed Hillary Clinton)[17] A. Linwood Holton Jr ., Virginia (1970?74); Assistant Secretary of State for Legislative Affairs (1974?75) (endorsed Hillary Clinton)[41] Jon Huntsman Jr ., Utah (2005?09); United States Ambassador to China (2009?11); United States Ambassador to Singapore (1992?93) (withdrew endorsement)[42] William Milliken , Michigan (1969?83) (endorsed Hillary Clinton)[43] Kay A. Orr , Nebraska (1987?91)[44] Tim Pawlenty , Minnesota (2003?11) (withdrew endorsement)[45] Marc Racicot , Montana (1993?01); Chair of the Republican National Committee (2001?03)[46] Mitt Romney , Massachusetts (2003?07), 2012 nominee for President[47] Arnold Schwarzenegger , California (2003?11)[48] William Weld , Massachusetts (1991?97) (2016 Libertarian nominee for Vice President)[49] U.S. Senators Kelly Ayotte , New Hampshire (2011?present) (withdrew intended vote, writing-in Mike Pence)[50] Shelley Moore Capito , West Virginia (2015?present) (withdrew endorsement)[51] Susan Collins , Maine (1997?present)[52] Jeff Flake , Arizona (2013?present) (called on Trump to withdraw his candidacy)[53][54] Cory Gardner , Colorado (2015?present) (withdrew endorsement, called on Trump to withdraw his candidacy, writing-in Mike Pence)[55] Dean Heller , Nevada (2011?present)[56] Mark Kirk , Illinois (2010?present) (withdrew endorsement, writing-in Colin Powell)[37] Mike Lee , Utah (2011?present)[57] John McCain , Arizona (1987?present); 2008 nominee for President (withdrew endorsement)[58] Lisa Murkowski , Alaska (2002?present) (called on Trump to withdraw his candidacy)[59] Rob Portman , Ohio (2010-present) [60] Ben Sasse , Nebraska (2015?present)[20][61] Dan Sullivan , Alaska (2015?present) (withdrew endorsement, called on Trump to withdraw candidacy, writing-in Mike Pence)[62] John Thune , South Dakota (2005?present) (withdrew endorsement, called on Trump to withdraw candidacy)[63] Former Norm Coleman , Minnesota (2003?09)[28][64] David Durenberger , Minnesota (1978?95) (endorsed Hillary Clinton)[17] Slade Gorton , Washington (1981?87, 1989?2001) (endorsed Evan McMullin)[65] Gordon J. Humphrey , New Hampshire (1979?90) (endorsed Hillary Clinton)[66][67] John Warner , Virginia (1979?2009); United States Secretary of the Navy (1972?74) (endorsed Hillary Clinton)[68] U.S. Representatives Justin Amash , Michigan (2011?present)[28] Mike Coffman , Colorado (2009?present)[69] Barbara Comstock , Virginia (2015?present)[70] Carlos Curbelo , Florida (2015?present)[20][71] Rodney Davis , Illinois (2013?present) (withdrew endorsement)[72] Charlie Dent , Pennsylvania (2005?present)[73] Bob Dold , Illinois (2011?13, 2015?present)[28][74] Jeff Fortenberry , Nebraska (2005?present) (withdrew endorsement)[72] Scott Garrett , New Jersey (2003?present) (withdrew endorsement)[72] Kay Granger , Texas (1997?present) (called on Trump to withdraw his candidacy)[75] Richard L. Hanna , New York (2011?present) (endorsed Hillary Clinton)[28][76] Cresent Hardy , Nevada (2015?present) (withdrew endorsement)[77] Joe Heck , Nevada (2011?present); 2016 nominee for U.S. Senate (withdrew endorsement)[77] Jaime Herrera Beutler , Washington (2011?present) (writing-in Paul Ryan)[78] Will Hurd , Texas (2015?present)[79] David Jolly , Florida (2014?present)[80] John Katko , New York (2015?present)[81] Adam Kinzinger , Illinois (2011?present)[82] Steve Knight , California (2015?present)[83] Frank LoBiondo , New Jersey (1995?present) (withdrew endorsement, writing-in Mike Pence)[84] Mia Love , Utah (2015?present)[85] Pat Meehan , Pennsylvania (2011?present) (called on Trump to withdraw his candidacy)[84] Erik Paulsen , Minnesota (2009?present) (withdrew endorsement)[86] Reid Ribble , Wisconsin (2011?present)[28] Scott Rigell , Virginia (2011?present) (endorsed Gary Johnson)[20] Martha Roby , Alabama (2011?present) (called on Trump to withdraw his candidacy)[87][88] Tom Rooney , Florida (2009?present) (withdrew endorsement)[72] Ileana Ros-Lehtinen , Florida (1989?present)[28] Mike Simpson , Idaho (1999?present) (withdrew endorsement)[10] Fred Upton , Michigan (1987?present)[89] David Valadao, California (2013?present)[90] Ann Wagner , Missouri (2013?present) (withdrew endorsement)[91] Host of Morning Joe on MSNBC and former U.S. Representative from Florida Joe Scarborough Former Steve Bartlett , Texas (1983?91)[92] Bob Bauman , Maryland (1973?81)[92] Sherwood Boehlert , New York (1993?2007) (endorsed Hillary Clinton)[93] Jack Buechner , Missouri (1987?91)[92] Tom Campbell , California (1989?93, 1995?2001) (endorsed Gary Johnson)[94] Bill Clinger , Pennsylvania (1979?97)[92] Tom Coleman , Missouri (1976?93)[92] Geoff Davis , Kentucky (2005?12)[92] Mickey Edwards , Oklahoma (1977?93)[92] Harris Fawell , Illinois (1985?99)[92] Ed Foreman , Texas (1963?65, 1969?71)[92] Amo Houghton , New York (1987?2005)[92] Bob Inglis , South Carolina (1993?99, 2005?11)[28] Jim Kolbe , Arizona (1985?2007) (endorsed Gary Johnson)[95] Steve Kuykendall , California (1999?2001)[92] Jim Leach , Iowa (1977?2007)[92] Pete McCloskey , California (1967?83)[92] Connie Morella , Maryland (1987?2003) (endorsed Hillary Clinton)[17] Mike Parker , Mississippi (1989?99); Assistant Secretary of the Army for Civil Works (2001?02)[92] Ron Paul , Texas (1976?77, 1979?85, 1997?2013)[96] Tom Petri , Wisconsin (1979?2015)[92] John Porter , Illinois (1980?2001)[92] Joe Scarborough , Florida (1995?2001); commentator and author[97] Claudine Schneider , Rhode Island (1981?91) (endorsed Hillary Clinton)[93] Chris Shays , Connecticut (1987?2009) (endorsed Hillary Clinton)[17] Peter Smith , Vermont (1989?11)[92] Mark Souder , Indiana (1995?2010)[98] J.C. Watts , Oklahoma (1995?2003)[20] Edward Weber , Ohio (1981?83)[92] Vin Weber , Minnesota (1983?93)[99] G. William Whitehurst , Virginia (1969?87)[92] Dick Zimmer , New Jersey (1991?97) (endorsed Gary Johnson)[100] Former State Department officials Richard Armitage , Deputy Secretary of State; Assistant Secretary of Defense for International Security Affairs (endorsed Hillary Clinton)[101] John B. Bellinger III , Legal Adviser of the Department of State; Legal Adviser to the National Security Council[12] Robert Blackwill , United States Ambassador to India; Deputy National Security Advisor for Strategic Planning (endorsed Hillary Clinton)[12][17] R. Nicholas Burns , Under Secretary of State for Political Affairs; United States Ambassador to NATO; United States Ambassador to Greece (endorsed Hillary Clinton)[102] Eliot A. Cohen , Counselor of the United States Department of State[12][20] Chester Crocker , Assistant Secretary of State for African Affairs[22] Jendayi Frazer , Assistant Secretary of State for African Affairs[12] James K. Glassman , Under Secretary of State for Public Diplomacy and Public Affairs (endorsed Hillary Clinton)[22] David F. Gordon , Director of Policy Planning[12] Donald Gregg , United States Ambassador to South Korea[19] David A. Gross , U.S. Coordinator for International Communications and Information Policy (endorsed Hillary Clinton)[17] John Hillen , Assistant Secretary of State for Political-Military Affairs[12] Reuben Jeffery III , Under Secretary of State for Economic Growth, Energy, and the Environment[12] Robert Joseph , Under Secretary of State for Arms Control and International Security Affairs[22] David J. Kramer , Assistant Secretary of State for Democracy, Human Rights, and Labor[12] Stephen D. Krasner , Director of Policy Planning[22] Frank Lavin , United States Ambassador to Singapore; Under Secretary of Commerce for International Trade (endorsed Hillary Clinton)[17] Robert McCallum , United States Ambassador to Australia; Acting United States Deputy Attorney General[12] Richard Miles , United States Ambassador to Azerbaijan, Bulgaria, and Georgia; Acting United States Ambassador to Kyrgyzstan[22] Roger Noriega , Assistant Secretary of State for Western Hemisphere Affairs[22] John Osborn , Member of the U.S. Advisory Commission on Public Diplomacy[22] Kristen Silverberg , Assistant Secretary of State for International Organization Affairs[12] William Howard Taft IV , Legal Adviser of the Department of State; United States Ambassador to NATO; United States Deputy Secretary of Defense[12] Shirin R. Tahir-Kheli , Senior Advisor for Women?s Empowerment; Special Assistant to the President for Democracy, Human Rights and International Operations (endorsed Hillary Clinton)[12][17] Betty Tamposi , Assistant Secretary of State for Consular Affairs (endorsed Hillary Clinton)[103] Peter Teeley , United States Ambassador to Canada (endorsed Hillary Clinton)[17] Robert Tuttle , United States Ambassador to the United Kingdom (endorsed Hillary Clinton)[104] Philip Zelikow , Counselor of the United States Department of State[12] Former Defense Department officials D on Bacon , Brigadier General, United States Air Force; 2016 nominee for Nebraska?s 2nd district (called on Trump to withdraw his candidacy)[105] Seth Cropsey , Assistant Secretary of Defense for Special Operations/Low Intensity Conflict & Interdependent Capabilities[22] Michael B. Donley , United States Secretary of the Air Force (endorsed Hillary Clinton)[17] Eric Edelman , Under Secretary of Defense for Policy[12] Doug Feith , Under Secretary of Defense for Policy[106] Robert Hastings , Acting Assistant to the Secretary of Defense for Public Affairs[22] Tim Kane , United States Air Force intelligence officer; Chief Labor Economist, Joint Economic Committee[22] Mary Beth Long , Assistant Secretary of Defense for International Security Affairs[12] Alberto J. Mora , General Counsel of the Navy (endorsed Hillary Clinton)[17] Gale Pollock , Acting Surgeon General of the United States Army (endorsed Hillary Clinton)[17] Martha Rainville , Major General, United States Air Force; Vermont Adjutant General[22] Michael Rubin , Defense Country Director for Iran and Iraq[22] Kalev Sepp , Deputy Assistant Secretary of Defense for Special Operations Capabilities[22] Matthew Waxman , Deputy Assistant Secretary of Defense for Detainee Affairs (endorsed Hillary Clinton)[10][12] Paul Wolfowitz , United States Deputy Secretary of Defense; President of the World Bank Group (voting for Clinton)[107] Dov Zakheim , Comptroller of the Department of Defense[12] Former National Security officials Ken Adelman , Director of the Arms Control and Disarmament Agency (endorsed Hillary Clinton)[10][22] Mike Baker , covert operations officer, Central Intelligence Agency[22] Tom Donnelly , Director of the Policy Group, House Armed Services Committee[22] Gary Edson , Deputy National Security Advisor[12] Richard Falkenrath , Deputy Homeland Security Advisor[12] Peter Feaver , Senior Director for Strategic Planning[12] Aaron Friedberg , Deputy National Security Advisor to the Vice President[12] Greg Garcia , Assistant Secretary of Homeland Security for Cyber Security and Telecommunications[22] Michael Green , Senior Director for Asia, National Security Council[12] Paul Haenle , Director for China and Taiwan, National Security Council[12] Michael Hayden , Director of the Central Intelligence Agency (2006?09)[12] William Inboden , Senior Director for Strategic Planning, National Security Council[12] James Jeffrey , Deputy National Security Advisor[12] James C. Langdon, Jr ., Chair of the President?s Intelligence Advisory Board[12] Deborah Loewer , Director of the White House Situation Room (endorsed Hillary Clinton)[108] Evan McMullin , Operations officer, Central Intelligence Agency; Senior Adviser for National Security, House Foreign Affairs Committee (Independent candidate for President)[109][110] P aul D. Miller , Director for Afghanistan, National Security Council[22] Meghan O?Sullivan , Deputy National Security Advisor for Iraq and Afghanistan[12] Kori Schake , Director of Defense Strategy, National Security Council[12] Gary Schmitt , Executive Director of the President?s Intelligence Advisory Board[22] Brent Scowcroft , National Security Advisor (1975?77, 1989?93); Chair of the President?s Intelligence Advisory Board (2001?05) (endorsed Hillary Clinton)[17] David Shedd , Deputy Director of National Intelligence; Acting Director of the Defense Intelligence Agency[22] Stephen Slick , Senior Director for Intelligence Programs, National Security Council[12] Frances Townsend , Homeland Security Advisor[22] Kenneth Wainstein , Homeland Security Advisor[12] Other former federal government officials Former Chief of Staff to the Vice President and founder of The Weekly Standard Bill Kristol Donald B. Ayer , United States Deputy Attorney General[12] Phillip D. Brady , White House Staff Secretary; White House Cabinet Secretary (endorsed Hillary Clinton)[108] Paul K. Charlton , United States Attorney[111] Linda Chavez , Director of the Office of Public Liaison; 1986 nominee for U.S. Senator from Maryland[28] Jim Cicconi , White House Staff Secretary (endorsed Hillary Clinton)[17] Scott Evertz , Director of the Office of National AIDS Policy (endorsed Hillary Clinton)[17] Tony Fratto , Deputy White House Press Secretary[112] Charles Fried , United States Solicitor General; Associate Justice of the Massachusetts Supreme Judicial Court (endorsed Hillary Clinton)[113] Fred T. Goldberg, Jr. , Assistant Secretary of the Treasury for Tax Policy; Commissioner of Internal Revenue (endorsed Hillary Clinton)[17] Hugh Hewitt , Assistant White House Counsel; conservative radio host (called on Trump to withdraw his candidacy)[114] Theodore Kassinger , United States Deputy Secretary of Commerce[12] Bill Kristol , Chief of Staff to the Vice President (endorsed Evan McMullin)[115] Rosario Marin , Treasurer of the United States (endorsed Hillary Clinton)[116] John McKay , former United States Attorney (endorsed Hillary Clinton)[117] Andrew Natsios , Administrator of the United States Agency for International Development; Chair of the Massachusetts Republican Party[12] Daniel F. Runde , Director of the Global Development Alliance[22] Larry D. Thompson , United States Deputy Attorney General[12] Dan Webb , former United States Attorney (endorsed Hillary Clinton)[118] Peter Wehner , Director of the Office of Strategic Initiatives[10] Lezlee Westine , Director of the Office of Public Liaison (2001?2005) (endorsed Hillary Clinton)[99][119] Peter Zeidenberg, Assistant United States Attorney[111] Statewide officials Current Brian Calley , Lieutenant Governor of Michigan (2011?present) (called on Trump to withdraw his candidacy)[120] Spencer Cox , Lieutenant Governor of Utah (2013?present)[121] Kim Guadagno , Lieutenant Governor of New Jersey (2010?present)[122] Former Paul Anderson , Associate Justice of the Minnesota Supreme Court (1994?2013) (endorsed Hillary Clinton)[123] Greg Bell , Lieutenant Governor of Utah (2009?13) (endorsed Evan McMullin)[124] Bob Brown , Secretary of State of Montana (2001?05) (endorsed Hillary Clinton)[125] Betty Montgomery , Attorney General of Ohio (1995?2003), Ohio State Auditor (2003?07)[126] Mark Shurtleff , Attorney General of Utah (2001?13) (endorsed Hillary Clinton)[127] Robert Smith , Associate Judge of the New York Court of Appeals (2004?14) (endorsed Hillary Clinton)[128] Michael Steele , Lieutenant Governor of Maryland (2003?07) and RNC Chair (2009?11)[129] Diana Taylor , New York Superintendent of Banks (2003?07) (endorsed Hillary Clinton)[130] Grant Woods , Attorney General of Arizona (1991?99) (endorsed Hillary Clinton)[131] State legislators Current Jack Ciattarelli , New Jersey State Representative (2011?present) (withdrew endorsement)[122] Kurt Daudt , Minnesota State Representative (2011?present), Speaker of the Minnesota House of Representatives (2015?present) (called on Trump to withdraw his candidacy)[132] David Johnson , Iowa State Senator (2003?present)[37][133] Mark B. Madsen , Utah State Senator (2005?present) (endorsed Gary Johnson)[134] Charisse Millett , Alaska State Representative (2009?present), Majority Leader (2015?present) (withdrew endorsement)[135][136] Ross Spano , Florida State Representative (2012?present)[80] Joe Sweeney , New Hampshire State Representative (2012?present) (withdrew endorsement)[137] Former Lois Sherman Hagarty , Pennsylvania State Representative (1980?92)[138] Brian Lees , Massachusetts State Senator (1989?2007), Minority Leader (1993?2007)[139] Jack McGregor , Pennsylvania State Senator (1963?70) (endorsed Hillary Clinton)[108] Will Weatherford , Florida State Representative (2006?14), Speaker of the Florida House of Representatives (2012?14)[140] Municipal officials Joel Giambra , former Erie County Executive (endorsed Hillary Clinton)[141] Carlos A. Giménez , Mayor of Miami-Dade County (endorsed Hillary Clinton)[142] Danny Jones , Mayor of Charleston, West Virginia (endorsed Gary Johnson)[143][144] Aimee Winder Newton , Member of the Salt Lake County Council (withdrew endorsement)[145] Tomás Regalado , Mayor of Miami[146] OTHER NOTABLE INDIVIDUALS ".replace('\n', '')
+fake2 = "BREAKING: Trump Jumps in FL, Takes 4 Point Lead in OH \nWilliams, who has publicly stated that he was not a Trump supporter, is nevertheless a man of honor and integrity. He doesn?t sell his values to common thugs who use bylines as weapons. \nAccording to both Williams and his attorney, Jonathan Franks, Jacob Bernstein from The Times approached Williams, asking for cooperation on a story alleging that people who live in Trump-branded buildings want the Trump name removed in light of the very difficult and contentious 2016 election season. \nWilliams, an independent who lives in a Trump-developed New York building, declined to cooperate.   \nAccording to Franks, Bernstein replied to a specific request not to print Williams? address by stating he ?would be more likely to extend that courtesy if Montel gave an interview.? \nProtecting another person?s privacy, especially the privacy of the ballot box, is not a special courtesy. It?s simply common decency. \nThe Washington Examiner took their colleagues at The Times to task for this low-life journalism, noting that Williams identifies as a conservative but is not a registered Republican. He endorsed Ohio Gov. John Kasich in the 2016 GOP primary and has publicly credited Kasich for bringing him back into the conservative fold. \nPlease share this article on Facebook and Twitter to help expose the media?s liberal bias.  ".replace('\n', '')
 fake3 = "vladimir putin , Valdai , sochi , RBTH Daily Russian President Vladimir Putin. Source: Kremlin.ru \nRussian President Vladimir Putin has said that the use of what he described as a \"mythical\" Russian military threat is \"a profitable business.\" \nThe Russian leader made this statement on Oct. 27 at a session of the Valdai international discussion club in Sochi. \n\"Fabricated, mythical threats like the so-called Russian military threat are constantly repeated. This is, indeed, a profitable business to seek new budgets in countries and press allies to fit the interests of one superpower, expand NATO and bring the alliance?s infrastructure, combat units and military hardware to our borders,\" said Putin. \n\"The truth is, however, that Russia is not going to attack anyone, that?s ridiculous,\" he continued.".replace('\n', '')
 fake4 = "Written by Peter Van Buren   venerable New York Times ran a story saying Donald Trump lies about the height of his buildings.For no apparent reason, the Times resurrected some information from 1979 saying Trump insisted on counting the basement levels of his signature Trump Tower in the overall count of how many floors the building has. The Times compares this lie to ?reports? that Trump adds an inch to his actual body height in his bio materials, and also repeated the gag line that he boasted about how long his penis is (no word on whether it is or is not actually longer than expected.)You have to wade down to paragraph 12 to learn other New York developers use the same count-the-basements levels gimmick to be able to advertise their buildings as taller. There is absolutely no news. The Russians Head over to Slate , which published an ?investigative piece? alleging a Trump computer server was secretly communicating with a Russian bank. The story had previously been debunked by the New York Times and The Intercept, but Slate ran it as if they had uncovered the smoking gun proving Trump is under the control of the Russians.At Mother Jones , another article alleged that an anonymous, former intelligence officer provided the FBI with information on a Russian scheme to help Trump win the presidency.?There?s no way to tell whether the FBI has confirmed or debunked any of the allegations contained in the former spy?s memos,? the story said. ?But a Russian intelligence attempt to co-opt or cultivate a presidential candidate would mark an even more serious operation than the hacking.?One more example, from Vox , which wrote without even bothering to source it at all ?There is basically conclusive evidence that Russia is interfering in the US election, and that this interference has been designed to damage Hillary Clinton?s campaign. There is strong evidence linking Trump?s foreign policy advisers to Russia, and Trump?s stated policy ideas are extremely favorable to Russian interests.? Journalism Much? I?ve chosen these examples because they are from publications that have in the past enjoyed decent reputations for reporting, and because these stories were run as ?news,? not opinion columns, where the standards go right through the floor. Even Mother Jones, which clearly works left-of-center, used to do so with some solid journalism.Not any more.These places (never find fringe publications) are now working with the same standards once reserved for reporting on aliens at Roswell, Elvis sightings and the Illuminati New World Order. It is apparently now within the bounds of mainstream journalism to build a story out of, well, nothing, such as a factoid from 1979, or essentially accuse a presidential candidate of treason based on a single, anonymous source, or claim the Russians have taken over our electoral process based on no sources at all. And Clinton? On the other side, reporting on Clinton by many of these same publications swerves between hagiography and poo-pooing away anything unfavorable. Emails? Who cares! Questions about what her accomplishments as Secretary of State really were? If you ask, you hate women. Pay-for-Play with the Clinton Foundation? Hah, everybody does it, it doesn?t matter. The standard seems to be absent a notarized receipt for a donation matching an arms sale, or a criminal conviction, nothing matters. Next? So be it. The media has fully sh*t the bed this election. That?s where we find ourselves.But what?s next? Will the media reset itself after November 8, or will they run President Trump is Putin?s dog stories for the full term? Will President Clinton be given a pass on, well, everything, for four years, with apologists and explainers on the front page of the Times, never mind in editorials?At what point will the media dig themselves out of this and start real reporting again? Reprinted with permission from WeMeantWell.com . Related".replace('\n', '')
 fake5 = "DOJ COMPLAINT: Comey Under Fire Over Partisan Witch Hunt For Hillary (TWEETS/VIDEO) By Natalie Dailey on October 30, 2016 Subscribe \nFor pretty much this entire election, Democratic presidential nominee Hillary Clinton has gotten flak for the way she handled her emails during her tenure as Secretary of State. Congressional Republicans grilled her for hours about it, but have found nothing. These same Republicans just keep on complaining anyway. \nNow, the Director of the FBI, James Comey, wrote a memo saying some newly-found emails may be linked to Hillary Clinton and her private server. \nThe media and the supporters of Republican presidential nominee Donald Trump are excited about the possibility of the FBI reopening the investigation. \nSorry, guys, it?s not. \nA Republican Congressman started a Twitter shitstorm over this news: FBI Dir just informed me, \"The FBI has learned of the existence of emails that appear to be pertinent to the investigation.\" Case reopened \n? Jason Chaffetz (@jasoninthehouse) October 28, 2016 \nSpeaker of the House, Paul Ryan (R-Wis), said that Clinton?s security briefings should stop: BREAKING NEWS ? The FBI is reopening its investigation into Secretary Hillary Clinton. \nMy full statement ? pic.twitter.com/LHfyg46dWk \n? Paul Ryan (@SpeakerRyan) October 28, 2016 \nAt least Hillary Clinton didn?t blab classified information on television. \nMany news outlets falsely reported that the entire investigation was back on. \nThe Associated Press tweeted: BREAKING: US official: Newly discovered emails related to Clinton investigation did not come from her private server. \n? AP Politics (@AP_Politics) October 28, 2016 \nThe emails were found during the investigation of disgraced ex-Congressman Anthony Weiner and his latest sexting scandal involving a 15-year-old girl. \nThe FBI doesn?t know for sure what is in the emails. It is very difficult to read emails when you don?t have a warrant to do so. This puts Comey?s letter to Congress in an even shadier light. All they know is that none of the emails are to or from Clinton herself, and they may only be duplicates of emails the FBI already has in their possession. \nThe Department of Justice has received a complaint from the Democratic Coalition Against Trump accusing FBI Director Comey of violating the Hatch Act . \nThe complaint reads in part: ?This is an election year, and we are just 11 days away from the date that the American public votes to choose the next President of the United States, I am writing to ask that an investigation be opened into Director Comey for any potential violations of the Hatch Act. The timing of this announcement, accompanied by the vague facts of the investigation, seems as if Director Comey was making a political move, and not a professional one.? \nPassed in 1939, the Hatch Act limits political activity of federal employees and certain state and D.C. employees who work with federal funding. It is meant to keep federal agencies from taking sides politically, and prevents employees from getting promotions based on political affiliations.".replace('\n', '')
@@ -60,9 +60,9 @@ def semanticSim(docs,text):
     contatore = 0
 
     for doc in docs:
-        fakenews = nlp(unicode(text, "latin-1"))
-        SemanticSimDict[contatore] = doc.similarity(fakenews)
-        print(doc.similarity(fakenews))
+        news = nlp(unicode(text, "latin-1"))
+        SemanticSimDict[contatore] = doc.similarity(news)
+        print(doc.similarity(news))
         contatore += 1
 
     SortedDict = sorted(SemanticSimDict.items(), key=lambda x: x[1])
@@ -70,7 +70,7 @@ def semanticSim(docs,text):
     return SortedDict
 
 
-dict1 = semanticSim(docs,fake)
+'''dict1 = semanticSim(docs,fake)
 list1 = ListFromDict(dict1)
 dict2 = semanticSim(docs,fake2)
 list2 = ListFromDict(dict2)
@@ -89,7 +89,33 @@ list8 = ListFromDict(dict8)
 dict9 = semanticSim(docs,fake9)
 list9 = ListFromDict(dict9)
 dict10 = semanticSim(docs,fake10)
+list10 = ListFromDict(dict10)'''
+
+
+
+
+dict1 = semanticSim(docs,real)
+list1 = ListFromDict(dict1)
+dict2 = semanticSim(docs,real2)
+list2 = ListFromDict(dict2)
+dict3 = semanticSim(docs,real3)
+list3 = ListFromDict(dict3)
+dict4 = semanticSim(docs,real4)
+list4 = ListFromDict(dict4)
+dict5 = semanticSim(docs,real5)
+list5 = ListFromDict(dict5)
+dict6 = semanticSim(docs,real6)
+list6 = ListFromDict(dict6)
+dict7 = semanticSim(docs,real7)
+list7 = ListFromDict(dict7)
+dict8 = semanticSim(docs,real8)
+list8 = ListFromDict(dict8)
+dict9 = semanticSim(docs,real9)
+list9 = ListFromDict(dict9)
+dict10 = semanticSim(docs,real10)
 list10 = ListFromDict(dict10)
+
+
 
 #Salva la notizia con valore di coseno similarita' piu' alto e più basso e ritrovale nel dataset.
 #I DATASET FAKE O REAL PASSATI IN QUESTO PUNTO SONO STATI RIPULITI DELLE NOTIZIE O CON CAMPO TEXT VUOTO OPPURE CON TEXT NON SIGNIFICATIVO (CONTENENTE AD ESEMPIO SOLO UNA O DUE PAROLE) PER EVITARE UNA PERDITA DI EFFICACIA NEL CALCOLO DELLA SIMILARITA'
@@ -117,45 +143,91 @@ def FindMinMaxSimText(dict):
     print(NewsWithMaxSim)
     print("\n ----------------------------------------------------------------------------------------------------------------------------------\n ")
 
-print("News1 inserita:\n")
-print(fake + "\n")
-FindMinMaxSimText(dict1)
+def printFake():
+    print("News1 inserita:\n")
+    print(fake + "\n")
+    FindMinMaxSimText(dict1)
 
-print("News2 inserita:\n")
-print(fake2 + "\n")
-FindMinMaxSimText(dict2)
+    print("News2 inserita:\n")
+    print(fake2 + "\n")
+    FindMinMaxSimText(dict2)
 
-print("News3 inserita:\n")
-print(fake3 + "\n")
-FindMinMaxSimText(dict3)
+    print("News3 inserita:\n")
+    print(fake3 + "\n")
+    FindMinMaxSimText(dict3)
 
-print("News4 inserita:\n")
-print(fake4 + "\n")
-FindMinMaxSimText(dict4)
+    print("News4 inserita:\n")
+    print(fake4 + "\n")
+    FindMinMaxSimText(dict4)
 
-print("News5 inserita:\n")
-print(fake5 + "\n")
-FindMinMaxSimText(dict5)
+    print("News5 inserita:\n")
+    print(fake5 + "\n")
+    FindMinMaxSimText(dict5)
 
-print("News6 inserita:\n")
-print(fake6 + "\n")
-FindMinMaxSimText(dict6)
+    print("News6 inserita:\n")
+    print(fake6 + "\n")
+    FindMinMaxSimText(dict6)
 
-print("News7 inserita:\n")
-print(fake7 + "\n")
-FindMinMaxSimText(dict7)
+    print("News7 inserita:\n")
+    print(fake7 + "\n")
+    FindMinMaxSimText(dict7)
 
-print("News8 inserita:\n")
-print(fake8 + "\n")
-FindMinMaxSimText(dict8)
+    print("News8 inserita:\n")
+    print(fake8 + "\n")
+    FindMinMaxSimText(dict8)
 
-print("News9 inserita:\n")
-print(fake9 + "\n")
-FindMinMaxSimText(dict9)
+    print("News9 inserita:\n")
+    print(fake9 + "\n")
+    FindMinMaxSimText(dict9)
 
-print("News10 inserita:\n")
-print(fake10 + "\n")
-FindMinMaxSimText(dict10)
+    print("News10 inserita:\n")
+    print(fake10 + "\n")
+    FindMinMaxSimText(dict10)
+
+
+
+def printReal():
+    print("News1 inserita:\n")
+    print(real + "\n")
+    FindMinMaxSimText(dict1)
+
+    print("News2 inserita:\n")
+    print(real2 + "\n")
+    FindMinMaxSimText(dict2)
+
+    print("News3 inserita:\n")
+    print(real3 + "\n")
+    FindMinMaxSimText(dict3)
+
+    print("News4 inserita:\n")
+    print(real4 + "\n")
+    FindMinMaxSimText(dict4)
+
+    print("News5 inserita:\n")
+    print(real5 + "\n")
+    FindMinMaxSimText(dict5)
+
+    print("News6 inserita:\n")
+    print(real6 + "\n")
+    FindMinMaxSimText(dict6)
+
+    print("News7 inserita:\n")
+    print(real7 + "\n")
+    FindMinMaxSimText(dict7)
+
+    print("News8 inserita:\n")
+    print(real8 + "\n")
+    FindMinMaxSimText(dict8)
+
+    print("News9 inserita:\n")
+    print(real9 + "\n")
+    FindMinMaxSimText(dict9)
+
+    print("News10 inserita:\n")
+    print(real10 + "\n")
+    FindMinMaxSimText(dict10)
+
+printReal()
 
 #Crea il grafo delle News
-GraphCreator.createGraph(list1, list2, list3, list4, list5, list6, list7, list8, list9, list10, len(list1), 4)
+GraphCreator.createGraph(list1, list2, list3, list4, list5, list6, list7, list8, list9, list10, len(list1), 7)
