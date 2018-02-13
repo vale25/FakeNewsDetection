@@ -1,14 +1,32 @@
 import re
 from pymongo import MongoClient
 from collections import Counter
+from User_News_Twitter import activeUsers
 
 client = MongoClient('localhost:27017')
 
-database = client['twitterCleaned']
-collection = database['tweetsCleaned']
+database = client['twitter']
+collection = database['tweets']
 
 record = collection.find()
-#print(record)
+
+# prendo gli id degli utenti che hanno letto almeno 10 news
+users_id = activeUsers().keys()
+#print users_id
+
+news = collection.aggregate([{"$group": { "_id": "$Tweet.user.id", "id_news": { "$addToSet": "$_id"} } }])
+
+
+id_news = []
+for doc in news:
+    id_utente = doc["_id"]
+    if id_utente in users_id:
+        id_notizia = doc["id_news"][0]
+        id_news.append(id_notizia)
+
+record = collection.find({"_id": {"$in":id_news} })
+print record.count()
+
 
 #Query per prendere gli id
 user_id = collection.find( {},  {"Tweet.user.id":1, "_id":0}).limit(100)
