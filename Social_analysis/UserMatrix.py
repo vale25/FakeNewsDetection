@@ -31,12 +31,12 @@ i = 0
 with open('Prova.txt', 'w') as the_file:
     for doc in record:
 
-        if i < 2:
+        if i < 100:
             tweet = doc['Tweet']
             user = tweet["user"]
             user_id = user['id']
-            print("userId")
-            print(user_id)
+            #print("userId")
+            #print(user_id)
 
             screen_name = user['screenName']
             Screen_name = len(screen_name)
@@ -48,47 +48,47 @@ with open('Prova.txt', 'w') as the_file:
                 NumbersElem = len(Numbers2)
 
 
-            print ("Screen name lenght:")
-            print Screen_name
-            print ("numbers in screen Name")
-            print NumbersElem
+            #print ("Screen name lenght:")
+            #print Screen_name
+            #print ("numbers in screen Name")
+            #print NumbersElem
 
             Username = user['name']
             User_Name_lenght = len(Username)
 
-            print("UserName lenght:")
-            print User_Name_lenght
+            #print("UserName lenght:")
+            #print User_Name_lenght
 
             UserBio = user['description']
             User_bio_lenght = len(UserBio)
 
-            print("User biography lenght:")
-            print User_bio_lenght
+            #print("User biography lenght:")
+            #print User_bio_lenght
 
             UserFriends = user['friendsCount']
 
-            print("User friendsCount:")
-            print UserFriends
+            #print("User friendsCount:")
+            #print UserFriends
 
             UserFollowers = user['followersCount']
 
-            print("User followersCount:")
-            print UserFollowers
+            #print("User followersCount:")
+            #print UserFollowers
 
             UserFavourites = user['favouritesCount']
 
-            print("User favouritesCount:")
-            print UserFavourites
+            #print("User favouritesCount:")
+            #print UserFavourites
 
             Userstatuses = user['statusesCount']
 
-            print("User statusesCount:")
-            print Userstatuses
+            #print("User statusesCount:")
+            #print Userstatuses
 
             Userlisted = user['listedCount']
 
-            print("User listedCount:")
-            print Userlisted
+            #print("User listedCount:")
+            #print Userlisted
 
             '''MediaPostScritti = Userstatuses / age
             print("Media post:")
