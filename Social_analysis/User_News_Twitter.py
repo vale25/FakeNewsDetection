@@ -29,14 +29,17 @@ def activeUsers():
     User_id_countDuplicates = Counter(users)
     #print(User_id_countDuplicates)
 
-    #Trova gli utenti che hanno letto almeno 10 news
-    Final_dict = {k:v for (k,v) in User_id_countDuplicates.items() if v > 9}
+    #Trova gli utenti che hanno letto almeno 5 news
+    Final_dict = {k:v for (k,v) in User_id_countDuplicates.items() if v > 4}
     #print(Final_dict)
-    #Tot_Users = len(Final_dict)
+    Tot_Users = len(Final_dict)
     #print("Users totali:")
     #print(Tot_Users)
 
     return Final_dict
+
+
+activeUsers()
 
 #GLI UTENTI CHE HANNO LETTO ALMENO DIECI NEWS SONO IN TOTALE 1159
 

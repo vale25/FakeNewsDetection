@@ -10,7 +10,7 @@ client = MongoClient('localhost:27017')
 database = client['twitter']
 collection = database['tweets']
 
-record = collection.find()
+#record = collection.find()
 
 # prendo gli id degli utenti che hanno letto almeno 10 news
 users_id = activeUsers().keys()
