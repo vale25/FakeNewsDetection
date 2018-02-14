@@ -2,16 +2,16 @@
 # -*- coding: iso-8859-15 -*-
 import os, sys
 import re
-import twitter
+#import twitter
 from pymongo import MongoClient
-from google.cloud import language
+'''from google.cloud import language
 from google.cloud.language import enums
-from google.cloud.language import types
+from google.cloud.language import types'''
 from collections import Counter
 from User_News_Twitter import activeUsers
 from datetime import datetime
 
-from Variables import consumerKey, consumerSecret, accessToken, accessTokenSecret
+'''from Variables import consumerKey, consumerSecret, accessToken, accessTokenSecret
 
 api = twitter.Api(consumer_key=consumerKey,
                   consumer_secret=consumerSecret,
@@ -19,7 +19,7 @@ api = twitter.Api(consumer_key=consumerKey,
                   access_token_secret=accessTokenSecret)
 
 
-client = language.LanguageServiceClient()
+client = language.LanguageServiceClient()'''
 mongo_client = MongoClient('localhost:27017')
 
 database = mongo_client['twitter']
@@ -82,7 +82,7 @@ def sentiment_analysis():
     # GLI UTENTI CHE HANNO LETTO ALMENO 10 NEWS E HANNO LA BIO SONO 992 SU 1159
 
 
-    #i = 0
+    '''i = 0
     with open("/media/valentina/Data/tesi/sentiment_analysis.txt", "w") as file:
         for id in sorted_ids:
             if id in descriptions:
@@ -101,7 +101,7 @@ def sentiment_analysis():
             #print i
             #i+=1
             print id
-    file.close()
+    file.close()'''
 
 
 def account_age():

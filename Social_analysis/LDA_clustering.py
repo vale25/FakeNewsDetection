@@ -8,7 +8,7 @@ from itertools import chain
 
 cont = 0
 news = []
-with open(Min10News_users,'r') as dataset:
+with open(Min10NewsUser_real,'r') as dataset:
     for line in dataset:
         if cont < 25:
             print(cont)
