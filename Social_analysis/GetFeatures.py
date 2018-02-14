@@ -68,21 +68,21 @@ def sentiment_analysis():
         desc = user["description"]
         descriptions[user_id] = desc
 
-
+    utenti = real_fake_percentage()
 
     final_desc = {}
-    for x in dict_active_users:
+    for x in utenti:
         if descriptions.has_key(x):
             final_desc[x] = descriptions[x]
     
     print "utenti attivi con bio:"
     print len(final_desc)
-    print final_desc
+    #print final_desc
 
     # GLI UTENTI CHE HANNO LETTO ALMENO 10 NEWS E HANNO LA BIO SONO 992 SU 1159
 
 
-    i = 0
+    #i = 0
     with open("/media/valentina/Data/tesi/sentiment_analysis.txt", "w") as file:
         for id in sorted_ids:
             if id in descriptions:
@@ -98,8 +98,9 @@ def sentiment_analysis():
                     file.write("%f\n" %0)
             else:
                file.write("%f\n" %0)
-            print i
-            i+=1
+            #print i
+            #i+=1
+            print id
     file.close()
 
 
@@ -183,17 +184,17 @@ def real_fake_percentage():
     file.close'''
 
 
-def news_associate():
-    news = {}
+def news_associate(news):
     utenti = real_fake_percentage()
-    record = collection.find({"Tweet.user.id": {"$in": real_fake_percentage()}})
+    record = collection.find({"Tweet.user.id": {"$in": utenti}})
     for doc in record:
         tweet = doc["Tweet"]
         user = tweet["user"]
         id = user["id"]
         url = doc["url_tweet"]
         news.setdefault(id, []).append(url)
+    print news
     return news
 
-
-real_fake_percentage()
+news = {}
+news_associate(news)
