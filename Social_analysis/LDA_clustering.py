@@ -5,6 +5,10 @@ from Variables import *
 import ast
 from gensim import corpora, models, similarities
 from itertools import chain
+from nltk.corpus import stopwords
+from nltk.stem.lancaster import LancasterStemmer
+from nltk.tokenize import RegexpTokenizer
+
 
 cont = 0
 news = []
@@ -18,15 +22,17 @@ with open(Min10NewsUser_real_noSons,'r') as dataset:
             cont+=1
 
 
-# remove common words and tokenize
-stoplist = set('for a of the and to in'.split())
-texts = [[word for word in document.lower().split() if word not in stoplist]
-         for document in news]
+# Step 2: removing whitespaces, punctuations, stopwords, and stemming words
+texts = []
+for document in news:
+    tokenizer = RegexpTokenizer(r'\w+')
+    intermediate = tokenizer.tokenize(document)
+    stop = stopwords.words('english')
+    intermediate = [i for i in intermediate if i not in stop]
+    lanste = LancasterStemmer()
+    intermediate = [lanste.stem(i) for i in intermediate]
+    texts.append(intermediate)
 
-# remove words that appear only once
-all_tokens = sum(texts, [])
-tokens_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
-texts = [[word for word in text if word not in tokens_once] for text in texts]
 
 # Create Dictionary.
 id2word = corpora.Dictionary(texts)
