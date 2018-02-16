@@ -2,6 +2,8 @@ import json
 from collections import Counter
 from datetime import datetime
 from Variables import *
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import SGDClassifier
 
 # read the data from disk and split into lines
 # we use .strip() to remove the final (empty) line
@@ -39,7 +41,9 @@ X_train, X_test, y_train, y_test = train_test_split(vectors, labels, test_size=0
 from sklearn.svm import LinearSVC
 
 # initialise the SVM classifier
-classifier = LinearSVC()
+#classifier = LinearSVC()
+#classifier = KNeighborsClassifier()
+classifier = SGDClassifier()
 
 # train the classifier
 t1 = datetime.now()
@@ -54,16 +58,45 @@ print(y_test[:10])
 
 #Evaluate the model
 from sklearn.metrics import accuracy_score
+print("accuracy score:\n")
 print(accuracy_score(y_test, preds))
+print("\n")
+
+y_test_bin = []
+preds_bin= []
+for elem in y_test:
+    if elem == "FAKE":
+        y_test_bin.append(0)
+    else:
+        y_test_bin.append(1)
+
+for elem in preds:
+    if elem == "FAKE":
+        preds_bin.append(0)
+    else:
+        preds_bin.append(1)
+
+#Average Precision
+from sklearn.metrics import average_precision_score
+print("average precision score:\n")
+print(average_precision_score(y_test_bin, preds_bin, average='macro', sample_weight=None))
+print("\n")
+
+#Log loss
+from sklearn.metrics import zero_one_loss
+print("loss:\n")
+print(zero_one_loss(y_test, preds, normalize=True, sample_weight=None))
+print("\n")
+
 
 #Precision and Recall
 from sklearn.metrics import classification_report
 print(classification_report(y_test, preds))
 
-import cPickle
+'''import cPickle
 # save the classifier
 with open('ScikitVectorizer.pkl', 'wb') as fid:
     cPickle.dump(vectorizer, fid)
 
 with open('ScikitClassifier.pkl', 'wb') as fid2:
-    cPickle.dump(classifier, fid2)
+    cPickle.dump(classifier, fid2)'''

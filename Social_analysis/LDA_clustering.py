@@ -8,7 +8,7 @@ from itertools import chain
 
 cont = 0
 news = []
-with open(Min10NewsUser_real,'r') as dataset:
+with open(Min10NewsUser_real_noSons,'r') as dataset:
     for line in dataset:
         if cont < 25:
             print(cont)
@@ -35,7 +35,7 @@ mm = [id2word.doc2bow(text) for text in texts]
 
 # Trains the LDA models.
 lda = models.ldamodel.LdaModel(corpus=mm, id2word=id2word, num_topics=20, \
-                               update_every=1, chunksize=10000, passes=1, minimum_probability=0)
+                               update_every=1, chunksize=10000, passes=1, minimum_probability=0,random_state=0)
 
 # Prints the topics.
 for top in lda.print_topics():
