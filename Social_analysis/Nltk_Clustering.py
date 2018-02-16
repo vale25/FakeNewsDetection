@@ -13,14 +13,17 @@ import json
 
 cont = 0
 news = []
-with open(Min10NewsUser_real_noSons,'r') as dataset:
+# normale solo real
+with open("/media/valentina/Data/tesi/dataset_per_clustering/5News_user_real.json",'r') as dataset:
     for line in dataset:
-        if cont < 25:
-            print(cont)
+        #if cont < 25:
+            #print(cont)
             article = ast.literal_eval(line)
             text = article['text']
             news.append(text)
-            cont+=1
+            #cont+=1
+
+print len(news)
 
 
 
@@ -36,7 +39,7 @@ def process_text(text, stem=True):
     return tokens
 
 
-def cluster_texts(texts, clusters=10):
+def cluster_texts(texts, clusters=20):
     """ Transform texts to Tf-Idf coordinates and cluster texts using K-Means """
     vectorizer = TfidfVectorizer(tokenizer=process_text,
                                  stop_words=stopwords.words('english'),
@@ -57,8 +60,8 @@ def cluster_texts(texts, clusters=10):
 
     return clustering
 
-clusters = cluster_texts(news, 10)
-pprint(dict(clusters))
+clusters = cluster_texts(news, 20)
+#pprint(dict(clusters))
 
 cont2 = 0
 i = 0
@@ -67,8 +70,8 @@ news_url= {}
 #my_json_dict = json.loads("/Scrivania/prova/provaaaaa.json")
 #value1 = my_json_dict["id"+str(i)]['url']
 
-
-myFile=open(Min10NewsUser_real, 'r')
+# unico json solo real
+myFile=open("/media/valentina/Data/tesi/dataset_per_clustering/5News_user_real_unico.json", 'r')
 myObject=myFile.read()
 u = myObject.decode('utf-8-sig')
 myObject = u.encode('utf-8')
@@ -83,24 +86,16 @@ for key,value in dict_clusters.items():
            # print elem
             dict1.setdefault(key, [])
             dict1[key].append(myData["id"+str(elem)]['url'])
+            #dict1[key]
 
-print dict1
+#pprint(dict1)
 
-'''news = {}
-news.setdefault("123", []).append("http://giantswire.usatoday.com/?p=602654")
-news.setdefault("123", []).append("http://www.chicagotribune.com/news/local/breaking/ct-met-chicago-violence-shootings-20180115-story.html?utm_source=dlvr.it&utm_medium=twitter")
-news.setdefault("233", []).append("http://www.chicagotribune.com/news/local/breaking/ct-met-chicago-violence-shootings-20180115-story.html")
-news.setdefault("233", []).append("https://www.chron.com/news/houston-texas/article/texas-flu-vaccine-anti-vaxxer-get-flu-shot-trump-12556371.php?utm_source=dlvr.it&utm_medium=twitter")
-news.setdefault("234", []).append("http://www.chicagotribune.com/news/local/breaking/ct-met-fatal-logan-square-fire-20180110-story.html")
-news.setdefault("134", []).append("https://nypost.com/2018/01/29/76-immigrants-found-stuffed-inside-tractor-trailer-in-texas-officials/")
-user_5news = news
-print user_5news'''
-
-
-user_5news = news_associate(news)
+news2 = {}
+user_5news = news_associate(news2)
+#print user_5news
 
 news_lette = 0
-news_totali_utente = 0
+#news_totali_utente = 0
 user_cluster = {}
 for key,value in user_5news.items():
     for keyDict, valueDict in dict1.items():
@@ -110,14 +105,29 @@ for key,value in user_5news.items():
                 #print "elemendict:", elemDict
                 if elem == elemDict:
                     news_lette+=1
-        news_totali_utente = float(news_lette)/float(len(valueDict))
-        if news_totali_utente >= (float(len(valueDict)/2.0)):
+        #news_totali_utente = float(news_lette)/float(len(valueDict))
+        if news_lette > 0: #(float(len(valueDict)/2.0)):
             user_cluster.setdefault(key, [])
-            user_cluster[key].append(keyDict)
+            user_cluster[key].append(news_lette)
+        else:
+            user_cluster.setdefault(key, [])
+            user_cluster[key].append(0)
+        #print user_cluster
         news_lette = 0
 
-print(user_cluster)
+#print(user_cluster)
+#print len(user_cluster)
 
+utenti = open("/media/valentina/Data/tesi/utenti_ordinegiusto.txt", "r")
+file = open("/media/valentina/Data/tesi/clustering_real.txt", "w")
+for line in utenti:
+    user = line.replace("\n", "")
+    file.write(str(user) + ",")
+    for elem in user_cluster[int(user)]:
+        file.write(str(elem) + ",")
+    file.write("\n")
+file.close
+utenti.close()
 
 
 

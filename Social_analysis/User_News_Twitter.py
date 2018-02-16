@@ -32,7 +32,7 @@ def activeUsers():
     #Trova gli utenti che hanno letto almeno 5 news
     Final_dict = {k:v for (k,v) in User_id_countDuplicates.items() if v > 4}
     #print(Final_dict)
-    Tot_Users = len(Final_dict)
+    #Tot_Users = len(Final_dict)
     #print("Users totali:")
     #print(Tot_Users)
 

@@ -13,7 +13,7 @@ collection = database['tweets']
 
 record = collection.find()
 
-# prendo gli id degli utenti che hanno letto almeno 10 news
+# prendo gli id degli utenti che hanno letto almeno 5 news
 users_id = activeUsers().keys()
 #print users_id
 
@@ -41,10 +41,10 @@ print("lunghezza url news", len(url_news))
 print("lunghezza url news senza duplicati", len(url_news_noDuplicati))
 
 
-outfile = open('/media/luca/Windows8_OS/Json_dataset_FakeReal_Twitter/dataset_twitter_finale/10News_user.json', 'w')
+outfile = open('/media/valentina/Data/tesi/5News_user.json', 'w')
 
 contatore = 0
-with open(ExtractedNews_twitter,'r') as dataset:
+with open("/media/valentina/Data/tesi/news_final.json",'r') as dataset:
     for line in dataset:
         print contatore
         article = ast.literal_eval(line)

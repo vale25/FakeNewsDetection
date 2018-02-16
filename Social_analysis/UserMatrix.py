@@ -1,7 +1,7 @@
 import re
 from pymongo import MongoClient
 from collections import Counter
-from User_News_Twitter import activeUsers
+from GetFeatures import real_fake_percentage
 from datetime import datetime
 
 
@@ -12,8 +12,8 @@ collection = database['tweets']
 
 #record = collection.find()
 
-# prendo gli id degli utenti che hanno letto almeno 10 news
-users_id = activeUsers().keys()
+# prendo gli id degli utenti che hanno letto almeno 5 news
+users_id = real_fake_percentage()
 #print users_id
 
 news = collection.aggregate([{"$group": { "_id": "$Tweet.user.id", "id_news": { "$addToSet": "$_id"} } }])
