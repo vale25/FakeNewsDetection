@@ -149,11 +149,21 @@ def news_associate(news):
     #print news
     return news
 
-news = {}
-a = news_associate(news)
-print a
+#news = {}
+#a = news_associate(news)
+#print a
 
-
+def news_associate_testi(news):
+    utenti = real_fake_percentage()
+    record = collection.find({"Tweet.user.id": {"$in": utenti}})
+    for doc in record:
+        tweet = doc["Tweet"]
+        user = tweet["user"]
+        id = user["id"]
+        url = doc["url_tweet"]
+        news.setdefault(id, []).append(url)
+    #print news
+    return news
 
 def sentiment_analysis():
     ####################################
